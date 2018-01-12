@@ -1,0 +1,91 @@
+<div id="header">
+  <div id="navbar">
+    <div class="layout fn-clear">
+      <ul id="nav" class="ui-nav">
+         <li <eq name="list_id" value="">class="nav-item  current"</eq> class="nav-item " id="nav-home"><a class="nav-link" target="_self" href="{$root}"><i class="ui-icon home-nav"></i></a></li>
+ <volist name="list_menu" id="ppvod"><eq name="ppvod.list_pid" value="0"><li class="nav-item <eq name="sid.sid" value="story"><else/><eq name="ppvod.list_id" value="$list_id">current</eq><eq name="ppvod.list_id" value="$list_pid">current</eq></eq>" id="nav-{$ppvod.list_dir}"><a class="nav-link" target="_self" href="{$ppvod.list_url}"><i class="ui-icon {$ppvod.list_dir}-nav"></i>{$ppvod.list_name}</a></li></eq></volist> 
+<!--<if condition="$list_id eq 35">
+<li  class="nav-item  current" id="nav-wei" class="nav-item " id="nav-wei">
+<a class="nav-link" target="_self" href="{:ff_mytpl_url('my_weidianying.html')}"><i class="ui-icon wei-nav"></i>微电影</a></li>
+<elseif condition="$list_pid eq 35"/>
+<li  class="nav-item  current" id="nav-wei" class="nav-item " id="nav-wei">
+<a class="nav-link" target="_self" href="{:ff_mytpl_url('my_weidianying.html')}"><i class="ui-icon wei-nav"></i>微电影</a></li>
+ <else />
+<li class="nav-item " id="nav-wei"><a class="nav-link" target="_self" href="{:ff_mytpl_url('my_weidianying.html')}"><i class="ui-icon wei-nav"></i>微电影</a></li>
+ </if>-->
+  <li class="nav-item " id="nav-live"><a class="nav-link" target="_self" href="{:ff_mytpl_url('my_live.html')}"><i class="ui-icon live-nav"></i>电视直播</a></li>
+      </ul>
+      <!-- // nav end -->
+      <ul id="sign" class="ui-nav">
+        <li class="nav-item drop-down" id="nav-looked"><a class="nav-link drop-title" target="_self"><i class="ui-icon looked-nav"></i>播放记录 </a>
+          <div class="drop-box">
+            <div class="looked-list">
+              <p><a class="close-his" target="_self" href="javascript:;">关闭</a><a href="javascript:;" id="emptybt" data="1" target="_self">清空全部播放记录</a></p>
+              
+					<ul class="highlight" id="playhistory">
+					</ul>
+              <div class="his-todo" id="morelog" style="display:none;"></div>
+              <div class="his-todo" id="his-todo"></div>
+            </div>
+           <script type="text/javascript">PlayHistoryObj.viewPlayHistory('playhistory');</script>
+            <!-- // looked-list end -->
+          </div>
+        </li>
+      </ul>
+      <!-- // sign end -->
+    </div>
+  </div>
+  <!-- // navbar end -->
+  <div id="subnav">
+    <div class="layout fn-clear">
+          <volist name="list_menu" id="ppvod">
+        <if condition="$ppvod.list_id eq 2">
+      <div class="subnav-tv fn-left"><strong class="tv">电视剧：</strong> <volist name="ppvod.son" id="son" offset="0" length='15'><a href="{$son.list_url}">{$son.list_name|msubstr=0,2}</a><em>|</em></volist></div>
+      <elseif condition="$ppvod.list_id eq 1" />
+      <div class="subnav-movie fn-right"><strong class="movie">电影：</strong><volist name="ppvod.son" id="son" offset="0" length='7'><a href="{$son.list_url}">{$son.list_name|msubstr=0,2}片</a><em>|</em></volist></div>
+      </if>
+      </volist> 
+    </div>
+  </div>
+  <!-- // subnav end -->
+  <div id="headbar">
+    <div class="layout fn-clear">
+      <div id="logo"><a href="{$root}"><img src="/static/images/logo.png" alt="{$sitename}" /></a></div>
+      <!-- // logo end -->
+<div id="searchbar"><div class="ui-search">
+<form id="search" name="search"  method="POST" action="{$root}search" onSubmit="return qrsearch();">
+<input type="text" id="wd" name="wd" class="search-input" value="请在此处输入影片片名或演员名称。" onfocus="if(this.value=='请在此处输入影片片名或演员名称。'){this.value='';}" onblur="if(this.value==''){this.value='请在此处输入影片片名或演员名称。';};" />
+<input type="submit" id="searchbutton"  class="search-button" value="" /></form>
+</div><!-- // search end -->
+        <div class="hotkeys"> {$hotkey}</div>
+        <!-- // hotkeys end -->
+      </div>
+      <!-- // searchbar end -->
+      <ul id="qire-plus">
+        <li><a id="new" href="{:ff_mytpl_url('my_new.html')}"><i class="ui-icon new-icon"></i>最近<br />更新</a></li>
+        <li><a href="{:ff_mytpl_url('my_top.html')}"><i class="ui-icon top-icon"></i>影片<br />排行</a></li>
+        <li><a href="/baiduplayer/F.html"><i class="ui-icon help-icon"></i>会员<br />帮助</a></li>
+        <li><a href="{$url_guestbook}"><i class="ui-icon gb-icon"></i>留言<br />反馈</a></li>
+        <li><a target="_self" id="a-clo" href="javascript:void(0);" onclick='fav();'><i class="ui-icon fav-icon"></i>收藏<br />本站</a></li>
+      </ul>
+      <!-- qire-plus end -->
+      <a class="show-login-dialog fn-hide" href="#" >登录</a>
+      <script type="text/javascript">
+				function fav(){
+					URL='{$root}';title='{$title}';
+					try{ 
+						window.external.addFavorite(URL, title);  
+					}catch (e){ 
+						try {
+							window.sidebar.addPanel(title, URL, ""); 
+						}catch (e){ 
+							alert("加入收藏失败，请使用Ctrl+D进行添加");
+						}
+				}	}
+			</script>
+    </div>
+    <!-- // layout end -->
+  </div>
+  <!-- // headbar end -->
+</div>
+<!-- // header end -->

@@ -1,0 +1,17 @@
+<div class="header">
+    <div class="logo"><a href="{$root}"><img src="{$tpl}/style/images/logo.gif" alt="{$sitename}"/></a></div>
+    <div class="hots">{$hotkey}</div>
+    <div class="nav">
+    	<div class="left"></div>
+        <a href="{$root}"><strong>首页</strong></a>
+        <volist name="list_menu" id="ppvod">
+        <if condition="getlistson($ppvod['list_id']) eq 1"><a href="{$ppvod.list_url}" <eq name="ppvod.list_id" value="$list_id">class="on"</eq><eq name="ppvod.list_id" value="$list_pid">class="on"</eq> <eq name="ppvod.list_id" value="$list_pid">class="on"</eq>>{$ppvod.list_name}</a></if>
+        <volist name="ppvod.son" id="ppvod"><a href="{$ppvod.list_url}" <eq name="ppvod.list_id" value="$list_id">class="on"</eq><eq name="ppvod.list_id" value="$list_pid">class="on"</eq>>{$ppvod.list_name}</a></volist>
+        </volist> 
+        <div class="right"></div>      
+    </div>
+    <div class="query">
+    	<div><a href="{:getlistname(1,'list_url')}">电影</a>&nbsp;|&nbsp;<a href="{:getlistname(2,'list_url')}">电视剧</a>&nbsp;|&nbsp;<a href="{:getlistname(23,'list_url')}">新闻资讯</a>&nbsp;|&nbsp;<a href="{$url_special}">影视专题</a>&nbsp;|&nbsp;<a href="{:ff_mytpl_url('my_tv.html')}" class="tv">电视直播</a>&nbsp;|&nbsp;<a href="{:ff_mytpl_url('my_new.html')}">今日更新</a>&nbsp;|&nbsp;<a href="javascript:void(0)" id="fav">收藏本站</a>&nbsp;|&nbsp;<a href="{$url_guestbook}">留言反馈</a>&nbsp;|&nbsp;</div><div id="history"><a href="javascript:void(0);" class="list_hist"><strong>您的播放记录</strong></a></div>
+    </div>
+    <div class="search"><form id="ffsearch" name="ffsearch" method="post" action="{$root}index.php?s=vod-search"><input type="text" name="wd" id="wd" class="input" value="{$wd}"/><input type="submit" value="搜索" class="submit"/></form></div>
+</div>

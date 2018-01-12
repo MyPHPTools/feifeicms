@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<include file="Home:vod_title_play" />
+<include file="Home:header" />
+</head>
+<body>
+<div class="wrap">
+    <include file="pp:header" />
+</div>
+<div class="player">
+    <ul><li class="left">{$vod_player}</li><li class="right">{:getadsurl('play300')}</li></ul>
+</div>
+<div class="wrap">
+	<div class="play960">{:getadsurl('play960')}</div>
+    <if condition="C(url_html) eq 0">
+    <volist name="vod_playlist" id="ppvod">
+    <eq name="ppvod.playname" value="$vod_playname"><div class="box2">
+        <h3><div><span><a href="{:UU('Home-gb/show',array(id=>$vod_id),false,true)}" target="_blank">报错</a></span><a href="{$vod_playurl}">播放来源：{$ppvod.playername}</a></div></h3>
+        <div class="playlist"><volist name="ppvod['son']" id="ppvodson"><a href="{$ppvodson.playurl}" <eq name="ppvodson.playpath" value="$vod_playpath">class="on"</eq>>{$ppvodson.playname}</a></volist></div>
+    </div>
+    </eq></volist>
+    </if>
+    <div class="box2 vod_hot">
+        <h3><div><a href="{$vod_playurl}">热播 {$list_name}</a></div></h3>
+        <ul class="hot wbox"><php>$hot_week = ff_mysql_vod('cid:'.$list_id.';limit:7;order:vod_hits_month desc,vod_addtime desc');</php>
+        <volist name="hot_week" id="ppvod"><li><p><a href="{$ppvod.vod_readurl}"><img class="lazy" data-original="{$ppvod.vod_picurl}" src="{$tpl}/style/images/js/blank.png" alt="{$ppvod.vod_name}" /></a></p><h4 class="space"><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name|msubstr=0,12}</a></h4></li></volist></ul>
+	</div>
+    <div class="player_l">
+    	<div class="banner468">
+        	{:getadsurl('banner468')}
+        </div>
+        <div class="box2 player_l">
+            <h3><div><a href="{$vod_readurl}">我来说两句</a></div></h3>
+            <div id="Comment" class="Comment">评论加载中...</div>
+        </div>
+    </div>
+    <div class="player_r">
+         <div class="box2">
+            <div class="gold">
+            	<p><include file="Home:home_vod_gold" /></p>
+                <p class="share"><include file="Home:home_share_baidu" /></p>
+            </div>
+        </div>
+        <div class="box2">
+            <h3><div><a href="{$vod_readurl}">剧情介绍</a></div></h3>
+            <ul class="intro">
+            <li><a href="{$vod_playurl}"><img src="{$vod_picurl}" alt="{$vod_name}全集观看"/></a><h2><a href="{$vod_readurl}" class="title">{$vod_name}</a><notempty name="vod_title"><span>{$vod_title}</span></notempty></h2>
+              <in name="list_id" value="3,4,15,16,17,18,19,20,21,22"><notempty name="vod_continu"><p>状态：连载至{$vod_continu}<eq name="list_pid" value="4">期<else/>集</eq></p></notempty></in>
+              <p>类型：<a href="{$list_url}">{$list_name}</a></p>
+              <p>主演：<notempty name="vod_actor">{$vod_actor|ff_search_url}<else />未录入</notempty></p>
+              <p>导演：<notempty name="director">{$director|ff_search_url}<else />未录入</notempty></p>
+              <p>地区：{$vod_area|default='未知'}</p></li>
+            </ul>
+        </div>
+    </div>   
+    <div class="blank"></div>
+    <include file="pp:footer" />  
+</div>
+</body>
+</html>

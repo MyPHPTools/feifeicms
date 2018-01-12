@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<include file="Home:vod_title_detail" />
+<include file="Home:header" />
+</head>
+<body>
+<div class="wrap">
+    <include file="pp:header" />
+    <div class="box">
+    	<div class="top">
+    		<h3><span><a href="{$vod_rssurl}" target="_blank">订阅更新</a></span><a href="{$root}">首页</a> > <a href="{$list_url}">{$list_name}</a> > <a href="{$vod_readurl}">{$vod_name}</a></h3>
+        </div>
+        <div class="vod_l">
+          <p class="pic"><a href="{$vod_playurl}"><img class="lazy" data-original="{$vod_picurl}" src="{$tpl}/style/images/js/blank.png" alt="{$vod_name}全集观看" /></a></p>
+          <p class="title w"><a href="{$vod_readurl}" class="title">{$vod_name}</a> <notempty name="vod_title">{$vod_title}</notempty> <in name="vod_cid" value="3,15,16,17,18,19"><notempty name="vod_continu">连载至{$vod_continu}集<else/>完结</notempty><else/><switch name="vod_cid"><case value="4"><notempty name="vod_continu">{$vod_continu}期<else/>完结</notempty></case><default />{$vod_title|default="高清版"}</switch></in></p>
+          <p class="w">影片类型：<a href="{$list_url}">{$list_name}</a></p>
+          <p class="w space">影片主演：<notempty name="vod_actor">{$vod_actor|ff_search_url}<else />未录入</notempty></p>
+          <p class="w">影片导演：<notempty name="vod_director">{$vod_director|ff_search_url}<else />未录入</notempty></p>
+          <p class="w">出产地区：<span>{$vod_area|default='未知'}</span>上映时间：{$vod_year|default='未录入'}</p>
+          <p class="w">对白语言：<span>{$vod_language|default='未知'}</span>更新时间：{$vod_addtime|date='Y-m-d',###}</p>
+          <p class="up">请您打分：<include file="home:vod_updown" /></p>
+          <p class="k">关键字：<volist name="Tag" id="ffvod"><a href="{$ffvod.tag_name|ff_tag_url}">{$ffvod.tag_name}</a>&nbsp;</volist></p>
+        </div>
+        <div class="vod_r">{:getadsurl('vod300')}</div>
+    </div>
+    <div class="box2">
+        <volist name="vod_playlist" id="ppvod" key="playerkey">
+        <h3><div><a href="{:ff_play_url($vod_id,($playerkey-1),1,$vod_cid,$vod_name)}">播放来源：{$ppvod.playername}</a></div></h3>
+        <div class="playlist wbox">
+        	<volist name="ppvod['son']" id="ppvodson"><a href="{$ppvodson.playurl}" target="_blank">{$ppvodson.playname}</a></volist>
+        </div>
+        <eq name="playerkey" value="1">
+        	<div class="vod960">{:getadsurl('vod960')}</div>
+        </eq>        
+        </volist>
+	</div>
+    <div class="box2 vod_hot">
+        <h3><div><a href="{$vod_playurl}">热播 {$list_name}</a></div></h3>
+        <ul class="hot wbox"><php>$hot_week = ff_mysql_vod('cid:'.$list_id.';limit:7;order:vod_hits_month desc,vod_addtime desc');</php>
+        <volist name="hot_week" id="ppvod"><li><p><a href="{$ppvod.vod_readurl}"><img class="lazy" data-original="{$ppvod.vod_picurl}" src="{$tpl}/style/images/js/blank.png" alt="{$ppvod.vod_name}" /></a></p><h4 class="space"><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name|msubstr=0,12}</a></h4></li></volist></ul>
+	</div>
+     <div class="box2">
+        <h3><div><a href="{$vod_readurl}">{$vod_name} 剧情介绍</a></div></h3>
+        <div class="vod_content">{:ff_content_url($vod_content,$Tag)}</div>
+	</div> 
+    <div class="top960">{:getadsurl('top960')}</div>
+    <script language="javascript">FF.History.Insert('{$vod_name}','{$vod_readurl}',10,7,'','');</script>
+    {$vod_hits_insert}
+   <include file="pp:footer" />  
+</div>
+</body>
+</html>

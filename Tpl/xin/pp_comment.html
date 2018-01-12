@@ -1,0 +1,48 @@
+ <div class="comment-focus">
+ <notempty name="cm_list">
+<ul class="ui-comment">
+<fflist name="cm_list" id="ppvod">
+
+<li class="comment-item fn-clear">
+            <div class="comment-time">
+              <P class="date-time"><strong>{$ppvod.cm_addtime|date='m-d H:i',###}</strong></p>
+            </div>
+            <div class="comment-post">
+              <div class="comment-post-arrow"></div>
+              <div class="comment-post-cnt">
+                <div class="comment-avatar"><a href="#" target="_blank"><IMG alt="qiergeli" src="/static/images/playlogo/noavatar_small.gif"></a></div>
+                <div class="comment-body">
+                  <div class="comment-text"><span class="user" ><a href="#" target="_blank">{$ppvod.cm_floor}楼 {$ppvod.user_name|htmlspecialchars|remove_xss}</A></span>：<em><em>{$ppvod.cm_content|htmlspecialchars|remove_xss}</em></em></div>
+                <DIV class="comment-assist fn-clear" >
+                    <P class=fn-left><SPAN class=digg><A class=sup href="javascript:void(0)" data="" jQuery17105257049607649751="55">顶(<STRONG>{$ppvod.cm_up}</STRONG>)</A></SPAN><SPAN class=digg ><A class=opp href="javascript:void(0)" data="" >踩(<STRONG>{$ppvod.cm_down}</STRONG>)</A></SPAN></P>
+                  <div class="comms"></div>
+                  
+                  
+                  
+                </div>
+              </div>
+              <div class="fn-clear"></div>
+            </div>
+            <!-- // comment-post end -->
+          </li>
+ </fflist>
+ </ul>
+ </div>
+ 
+  <if condition="$cm_count gt C('user_cmnum')">
+  
+  <div class="ui-bar">
+             
+        <div class="ui-pages commpage">{$cm_pages}</div>
+      </div>
+      
+      <else />
+      
+         <div class="comment-focus">
+        <ul class="ui-comment" >
+          <li class="kong">当前没有评论评论，赶快抢个沙发吧！</li>
+        </ul>
+        <!-- // i-list End -->
+      </div>
+      
+  </notempty>

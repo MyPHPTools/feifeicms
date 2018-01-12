@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>《{$title}电影/电视剧全集》高清电影在线观看 - 百度影音 - 明星专辑 - {$sitename}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="最新{$list_name}包含的影片有<volist name='vod_list' id='ppvod'>{$ppvod.vod_name|msubstr=0,10},</volist>完全免费在线观看！">
+<script language="javascript"><!-- 
+	window.onerror=function(){return true;} 
+// --></script>
+<include file="system:js" />
+</head>
+<body>
+<include file="pp:header" />
+<div id="content" class="layout">
+  <div class="bread-crumb-nav fn-clear">
+    <ul class="bread-crumbs">
+      <li class="home"><a href="{$siteurl}">首页</a></li>
+      <li><a href="{$url_special}">明星专题</a></li>
+      <li><a href="#">{$special_name}</a></li>
+    </ul>
+    <!-- // bread-crumbs end -->
+  </div>
+  <!-- // bread-crumb-nav end -->
+  <div id="specail-page">
+    <div class="specail-banner"><img src="{$special_banner}" alt="{$special_name}介绍" /></div>
+    <!-- // specail-banner end -->
+    <div class="specail-desc">
+      <h2>{$special_name}</h2>
+      <p>{$special_content}…</p>
+    </div>
+    <div class="specail-mask"></div>
+  </div>
+  <!-- // specail-page end -->
+  <div class="ui-box" id="specail-list">
+    <p class="play-list fn-clear">
+    <fflist name="list_vod" id="ppvod">
+	<a href="{$ppvod.vod_readurl}" class="title" target="_blank">{$ppvod.vod_name}</a>
+    </fflist>
+    
+    </p>
+  </div>
+  <!-- // specail-list end -->
+</div>
+<include file="pp:footer" />
+</body>
+</html>

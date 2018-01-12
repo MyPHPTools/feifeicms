@@ -1,0 +1,1 @@
+a:4:{i:0;s:9:"actors_id";i:1;s:11:"actors_type";i:2;s:11:"actors_name";s:5:"_type";a:3:{s:9:"actors_id";s:12:"mediumint(8)";s:11:"actors_type";s:10:"tinyint(1)";s:11:"actors_name";s:11:"varchar(50)";}}

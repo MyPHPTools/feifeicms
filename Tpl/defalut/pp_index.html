@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<include file="Home:header" />
+</head>
+<body><php>
+$vod_stars = ff_mysql_vod('limit:14;order:vod_hits desc');
+$vod_news = ff_mysql_vod('limit:36;order:vod_addtime desc');
+$vod_hot_tv = ff_mysql_vod('limit:21;cid:2;order:vod_hits desc');
+$vod_hot_dm = ff_mysql_vod('limit:10;cid:3;order:vod_hits desc');
+$vod_hot_dy = ff_mysql_vod('limit:10;cid:1;order:vod_hits desc');</php>
+<div class="wrap"><include file="pp:header" />
+<div class="top960">{:getadsurl('top960')}</div>
+<div class="box">
+    <div class="top"><h3><a href="{$root}">热播节目推荐</a></h3></div>
+    <ul class="imgh4 index_stars"><volist name="vod_stars" id="ppvod"><li><p><a href="{$ppvod.vod_readurl}"><img class="lazy" data-original="{$ppvod.vod_picurl}" src="{$tpl}/style/images/js/blank.png" alt="{$ppvod.vod_name}" /></a></p><h4><a href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">{$ppvod.vod_name}</a></h4></li></volist></ul>
+    </volist></ul>
+</div>
+ <div class="box">
+    <div class="top"><h3><span>今天到目前已更新<strong>{:getcount(999)}</strong>部</span><a href="{:ff_mytpl_url('my_new.html')}">最新更新节目</a></h3></div>
+    <ul class="hang1"><volist name="vod_news" id="ppvod" mod="4">
+    <li><b>{$ppvod.vod_addtime|getcolordate='m-d',###}</b><a href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">{$ppvod.vod_name|getcolor=$ppvod['vod_color']}</a></li>
+    <eq name="mod" value="0"></ul><in name="i" value="8,16,24,32"><ul class="hang1"><else /><ul class="hang2"></in></eq>
+    </volist></ul>
+</div> 
+<div class="index960">{:getadsurl('index960')}</div>
+<div class="index_right">
+    <div class="top1">
+    <div class="top"><span>评分</span><h2>电视剧</h2></div>
+    <ul><volist name="vod_hot_tv" id="ppvod">
+    <li><span>{$ppvod.vod_gold}</span><h3><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name}</a></h3></li>
+    </volist></ul></div>
+    <!-- -->
+    <div class="top2">
+    <div class="top"><span>评分</span><h2>动漫</h2></div>
+    <ul><volist name="vod_hot_dm" id="ppvod">
+    <li><span>{$ppvod.vod_gold}</span><h3><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name}</a></h3></li>
+    </volist></ul></div>
+    <!-- -->
+    <div class="top3">
+    <div class="top"><span>评分</span><h2>电影</h2></div>
+    <ul><volist name="vod_hot_dy" id="ppvod">
+    <li><span>{$ppvod.vod_gold}</span><h3><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name}</a></h3></li>
+    </volist></ul></div>
+</div>    
+<div class="index_left">
+    <php>$cid_arr = array(15,16,17,18,3,1);</php>
+    <volist name="cid_arr" id="ppcid" key="k">
+    <in name="ppcid" value="1,3">
+        <php>$vod_new = ff_mysql_vod('cid:'.$ppcid.';limit:30;order:vod_addtime desc');</php>
+        <div class="news1">
+    <else />
+        <php>$vod_new = ff_mysql_vod('cid:'.$ppcid.';limit:12;order:vod_addtime desc');</php>
+        <div class="news2">
+    </in>
+        <div class="top"><span><a href="{:getlistname($ppcid,'list_url')}">显示更多</a></span><h2><a href="{:getlistname($ppcid,'list_url')}">{:getlistname($ppcid)}</a></h2></div>
+        <ul><volist name="vod_new" id="ppvod">
+        <li><span>{$i}</span><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name}</a></li>
+        </volist></ul>
+        </div>
+    </volist>
+</div>
+<div class="links">
+    <div class="title">
+        <h4><span><a href="mailto:{$email}" target="_blank">申请友链</a></span>友情链接</h4>
+    </div>
+    <ul><volist name="list_link" id="ppvod"><a href="{$ppvod.link_url}" target="_blank">{$ppvod.link_name}</a>┆</volist></ul>
+</div> 
+<include file="pp:footer" /></div>
+</body>
+</html>

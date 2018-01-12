@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>明星合集，港台明星，内地明星，电视剧电影明星专辑 - 百度影音 - {$sitename}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="最新{$list_name}包含的影片有<volist name='vod_list' id='ppvod'>{$ppvod.vod_name|msubstr=0,10},</volist>完全免费在线观看！">
+<script language="javascript"><!-- 
+	window.onerror=function(){return true;} 
+// --></script>
+<include file="system:js" />
+</head>
+<body>
+<include file="pp:header" />
+<script type="text/javascript">
+			function fav(){
+			 URL='/';title='奇热剧集站';
+			try  { window.external.addFavorite(URL, title);  }catch (e){ try {window.sidebar.addPanel(title, URL, "");}
+           catch (e) { alert("加入收藏失败，请使用Ctrl+D进行添加");}}}
+
+			</script>
+<div id="content" class="layout">
+  <div class="bread-crumb-nav fn-clear">
+    <ul class="bread-crumbs">
+      <li class="home"><a href="{$siteurl}">首页</a></li>
+      <li><a href="{$url_special}">明星专题</a></li>
+    </ul>
+    <!-- // bread-crumbs end -->
+  </div>
+  <!-- // bread-crumb-nav end -->
+  <div class="ui-box" id="specail-focus">
+    <ul class="specail-item fn-clear">
+    
+     <php>$special_list = ff_mysql_special('limit:8;page:true;order:special_addtime desc,special_id desc');$page = $special_list[0]['page'];</php>
+     <neq name="special.0.count" value="0"><volist name="special_list" id="ppvod">
+      <li><a class="play-img" href="{$ppvod.special_readurl}" target="_blank"><img src="{$ppvod.special_logo}" alt="专题《{$ppvod.special_name}》" />
+        <label class="mask">&nbsp;</label>
+        <label class="text">{$ppvod.special_name|msubstr=0,20}</label>
+        </a></li>
+     </volist>
+    </ul>
+                            <div class="pages">{$page}</div>
+      <else/>
+       	 <li>专题暂无数据！</li>
+      </neq>
+  </div>
+  <!-- // ui-box end -->
+</div>
+<include file="pp:footer" />
+</body>
+</html>

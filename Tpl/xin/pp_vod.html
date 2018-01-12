@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><eq name="list_pid" value="2">《{$vod_name}》全集在线观看－{$list_name}<else />《{$vod_name}》高清在线观看-电影{$vod_name}下载</eq>－{$sitename}</title>
+<in name="list_pid" value="2,3">
+<meta name="keywords" content="{$vod_name},{$vod_name}在线观看,{$vod_name}全集,电视剧{$vod_name},{$vod_name}下载,{$vod_name}主题曲,{$vod_name}剧情,{$vod_name}演员表">
+<meta name="description" content="{$vod_name} {$vod_name}在线观看 {$vod_name}全集 电视剧{$vod_name}；{$vod_name}剧情：{$vod_content|h|msubstr=0,100}">
+<else />
+<meta name="keywords" content="{$vod_name}下载,{$vod_name}在线观看,{$vod_name}高清下载,{$vod_name}qvod,{$vod_name}高清">
+<meta name="description" content="{$vod_name}高清在线观看 {$vod_name}电影 {$vod_name}下载 {$vod_name}演员表 {$vod_name}上映时间：{$vod_year} {$vod_name}剧情：{$vod_content|h|msubstr=0,100}">
+</in>
+<include file="system:js" />
+<script type="text/javascript">
+		var loadcomm=0;
+	</script>
+</head>
+<body>
+<include file="pp:header" />
+<div id="content" class="layout">
+  <div class="ui-sponsor">
+    <!-- 广告位：vod01 -->
+{:getadsurl('vod_960_01')}
+  </div>
+  <!-- // ui-sponsor end -->
+  <div class="bread-crumb-nav fn-clear">
+    <ul class="bread-crumbs">
+      <li class="home"><a href="{$root}">首页</a></li>
+      <li><a href="{$list_url}">{$list_name}</a></li>
+      <li><a href="{$vod_readurl}">{$vod_name}</a></li>
+    </ul>
+    <!-- // bread-crumbs end -->
+  </div>
+  <!-- // bread-crumb-nav end -->
+      <div class="ui-box" id="detail-box">
+	  <div class="rating-box" id="rating-main" style="display: block;"><div class="rating-total fn-clear"><label class="rating-total-item" id="total">&nbsp;</label><div class="pingfen-total"><strong id="pingfen"></strong><em id="pingfen2"></em></div></div><div class="rating-panle"><div class="rating-bar"><div class="rating-bar-item" id="fenshu">&nbsp;</div></div><ul class="rating-show"><li><span title="力荐" class="starstop star5">力荐</span><div class="power"><div class="power-item" id="pam"></div></div><em id="pa">人</em></li><li><span title="推荐" class="starstop star4">推荐</span><div class="power"><div class="power-item" id="pbm"></div></div><em id="pb">人</em></li><li><span title="还行" class="starstop star3">还行</span><div class="power"><div class="power-item" id="pcm"></div></div><em id="pc">人</em></li><li><span title="较差" class="starstop star2">较差</span><div class="power"><div class="power-item" id="pdm"></div></div><em id="pd">人</em></li><li><span title="很差" class="starstop star1">很差</span><div class="power"><div class="power-item" id="pem"></div></div><em id="pe">人</em></li></ul></div></div>
+	  <div class="rating-box" id="rating-kong" style="display: none;"><div class="rating-kong-item"><span class="loading">评分加载中...</span></div></div>
+        <!-- // rating-box End -->
+    <div class="detail-title fn-clear">
+      <h2>{$vod_name}</h2>
+      <div class="detail-sect">
+        <div class="interest-sect user-bt"><a class="sect-btn"  onclick='window.external.AddFavorite("{$siteurl}","{$siteurl}")'>收藏</a>
+        </div>
+        <!-- // interest_sect End -->
+        <div class="interest-rss user-bt"><a class="rss-btn sect-btn" href="{$vod_rssurl}">订阅</a>
+        </div>
+      </div>
+      <!-- // detail-sect End -->
+    </div>
+    <!-- // detail-title End -->
+     <!-- // detail-title End -->
+    <div class="detail-cols fn-clear">
+      <div class="detail-pic fn-left"><img width="225" height="300" src="{$vod_picurl}" alt="{$vod_name}" /></div>
+       <!-- // detail-pic End -->
+          <div class="detail-info fn-left">
+            <div id="detail-rating" class="fn-clear">
+				<div id="rating" class="fn-left"><span class="label">我也要给这影片打分：</span>
+                <ul class="rating" id="fenshu">
+                <li class="one current active" title="很差" val="1">很差</li>
+                <li class="two current active" title="较差" val="2">较差</li>
+                <li class="three current active" title="还行" val="3">还行</li>
+                <li class="four active" title="推荐" val="4">推荐</li>
+                <li class="five active" title="力荐" val="5">力荐</li>
+            </ul>
+            <span id="ratewords"><switch name="vod_gold">
+            <case value="0">评分</case>
+            <case value="1">很差</case>
+            <case value="1.1">很差</case>
+            <case value="1.2">很差</case>
+            <case value="1.3">很差</case>
+            <case value="1.4">很差</case>
+            <case value="1.5">很差</case>
+            <case value="1.6">很差</case>
+            <case value="1.7">很差</case>
+            <case value="1.8">很差</case>
+            <case value="1.9">很差</case>
+            <case value="2">很差</case>
+            <case value="2.1">很差</case>
+            <case value="2.2">很差</case>
+            <case value="2.3">很差</case>
+            <case value="2.4">很差</case>
+            <case value="2.5">很差</case>
+            <case value="2.6">很差</case>
+            <case value="2.7">很差</case>
+            <case value="2.8">很差</case>
+            <case value="2.9">很差</case>
+            <case value="3">较差</case>
+            <case value="3.1">较差</case>
+            <case value="3.2">较差</case>
+            <case value="3.3">较差</case>
+            <case value="3.4">较差</case>
+            <case value="3.5">较差</case>
+            <case value="3.6">较差</case>
+            <case value="3.7">较差</case>
+            <case value="3.8">较差</case>
+            <case value="3.9">较差</case>
+            <case value="4">较差</case>
+            <case value="4.1">较差</case>
+            <case value="4.2">较差</case>
+            <case value="4.3">较差</case>
+            <case value="4.4">较差</case>
+            <case value="4.5">较差</case>
+            <case value="4.6">较差</case>
+            <case value="4.7">较差</case>
+            <case value="4.8">较差</case>
+            <case value="4.9">较差</case>
+            <case value="5">还行</case>
+            <case value="5.1">还行</case>
+            <case value="5.2">还行</case>
+            <case value="5.3">还行</case>
+            <case value="5.4">还行</case>
+            <case value="5.5">还行</case>
+            <case value="5.6">还行</case>
+            <case value="5.7">还行</case>
+            <case value="5.8">还行</case>
+            <case value="5.9">还行</case>
+            <case value="6">还行</case>
+            <case value="6.1">还行</case>
+            <case value="6.2">还行</case>
+            <case value="6.3">还行</case>
+            <case value="6.4">还行</case>
+            <case value="6.5">还行</case>
+            <case value="6.6">还行</case>
+            <case value="6.7">还行</case>
+            <case value="6.8">还行</case>
+            <case value="6.9">还行</case>
+            <case value="7">推荐</case>
+            <case value="7.1">推荐</case>
+            <case value="7.2">推荐</case>
+            <case value="7.3">推荐</case>
+            <case value="7.4">推荐</case>
+            <case value="7.5">推荐</case>
+            <case value="7.6">推荐</case>
+            <case value="7.7">推荐</case>
+            <case value="7.8">推荐</case>
+            <case value="7.9">推荐</case>
+            <case value="8">推荐</case>
+            <case value="8.1">推荐</case>
+            <case value="8.2">推荐</case>
+            <case value="8.3">推荐</case>
+            <case value="8.4">推荐</case>
+            <case value="8.5">推荐</case>
+            <case value="8.6">推荐</case>
+            <case value="8.7">推荐</case>
+            <case value="8.8">推荐</case>
+            <case value="8.9">推荐</case>
+            <case value="9">力荐</case>
+            <case value="9.1">力荐</case>
+            <case value="9.2">力荐</case>
+            <case value="9.3">力荐</case>
+            <case value="9.4">力荐</case>
+            <case value="9.5">力荐</case>
+            <case value="9.6">力荐</case>
+            <case value="9.7">力荐</case>
+            <case value="9.8">力荐</case>
+            <case value="9.9">力荐</case>
+            <case value="10">力荐</case>
+            <case value="10.0">力荐</case>
+            <default />
+            </switch></span></div>
+			</div><!-- // detail-rating End -->
+        <div class="info fn-clear">
+          <dl><dt>主演：</dt><dd><notempty name="vod_actor">{$vod_actor|ff_search_url}<else />未录入</notempty></dd></dl>
+          <dl><dt>状态：</dt><dd><font color="#FF0000"><neq name="vod_continu" value="0">{$vod_title}<else/>{$vod_title}</neq></font> <span class="color"><neq name="vod_continu" value="0">更新至{$vod_continu}集<else/>完结</neq></span></dd></dl>
+          <dl class="fn-left"><dt>类型：</dt><dd><a href="{$list_url}">{$list_name|msubstr=0,2}</a>{$vod_mcid|ff_mcat_url=$vod_cid}</dd></dl>
+          <dl class="fn-right"><dt>地区：</dt><dd><span><a href="{$root}vodlist-{$list_id}-area-{$vod_area|default='其他'}.html" target="_blank">{$vod_area|default='其他'}</a></span></dd></dl>
+          <dl class="fn-left"><dt>语言：</dt><dd><span>{$vod_language|default='未知'}</span></dd></dl>
+          <dl class="fn-right"><dt>导演：</dt><dd><notempty name="vod_director">{$vod_director}<else />未录入</notempty></dd></dl>
+          <dl class="fn-left"><dt>时间：</dt><dd><span id="addtime">{$vod_addtime|date='Y-m-d H:i:s',###}</span></dd></dl>
+          <dl class="fn-right"><dt>年份：</dt><dd><span>{$vod_year|default='未录入'}</span></dd></dl>
+          <dl>
+            <dt>评论：</dt>
+            <dd id="link-cmt" >
+            <php>$count=M('cm')->where(array('cm_cid'=>$vod_id))->select();</php>
+              <label>当前有<strong id="commnum">{:count($count)}</strong>条评论，</label><a href="#comment">我也要评论</a></dd>
+          </dl>
+          <dl class="juqing">
+            <dt>剧情：</dt>
+            <dd>{$vod_content|msubstr=0,40}… <a class="link detail-desc" href="#juqing">详细剧情</a></dd>
+          </dl>
+        </div>
+         <div class="play-mode">
+			<dl class="play-mode-list">
+            <dd>选择在线观看模式:</dd>
+            <volist name="vod_playlist" id="ppvod">
+            <neq name="ppvod.playname" value="down">
+			<dd <gt name="i" value="1"><else/>class="current"</gt>><a title="{$ppvod.playername}" id="{$ppvod.playname}-pl" ><span>{$ppvod.playername}</span></a></dd></neq></volist>
+            </dl>
+			</div>
+        <!-- // info End -->
+      </div>
+      <!-- // detail-info End -->
+      <div class="detail-union fn-right">
+   {:getadsurl('vod_300_01')}
+      </div>
+      <!-- // detail-ad End -->
+    </div>
+    
+    <!-- // detail-cols End -->
+    <div class="detail-related fn-clear">
+      <h5 class="hd">你是否也在<strong>寻找</strong>：</h5>
+      <p class="bd">
+      <php>$tab_wd = ff_mysql_vod('name:'.msubstr($vod_name,0,4).';num:8;order:vod_hits desc,vod_id desc');
+if(!$tab_wd || count($tab_wd) == 1) {
+$tab_wd = ff_mysql_vod('name:'.msubstr($vod_name,0,3).';num:8;order:vod_hits desc,vod_id desc');
+}</php>
+<volist name="tab_wd" id="ppvod">
+<a href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">{$ppvod.vod_name|msubstr=0,15}</a>
+</volist>
+  </p>
+    </div>
+    <!-- // detail-related End -->
+  </div>
+  <!-- // ui-box#detail-box end -->
+  <div class="ui-sponsor">
+{:getadsurl('vod_960_02')}
+  </div>
+  <!-- // ui-sponsor end -->
+  
+  <div class="ui-box" id="detail-list"><a name=""></a>
+   <volist name="vod_playlist" id="ppvod">
+   <neq name="ppvod.playname" value="down">
+    <div class="play-list-box" id="{$ppvod.playname}-pl-list" <gt name="i" value="1">style="display:none"<else/>style="display:block"</gt>>
+      <div class="caption fn-clear">
+        <h4><a href="#"><img src="/static/images/playlogo/{$ppvod.playname}.gif" alt="" /></a></h4>
+        <eq name="ppvod.playname" value="qiyi"><div class="txt">在线观看无须安装播放器,建议安装爱奇艺影音客户端观看更流畅 <a target="_blank" href="http://static.qiyi.com/ext/common/iQIYI/QIYILittle_02_13.exe">点击下载</a>。</div></eq>
+        <eq name="ppvod.playname" value="yuku"><div class="txt">在线观看无须安装播放器</div></eq>
+        <eq name="ppvod.playname" value="letv"><div class="txt">在线观看无须安装播放器,建议安装乐视影音客户端观看更流畅 <a target="_blank" href="http://dl1.letv.com/letvlive/letvplayer/1.0.0.410/LePlayer_setup.exe">点击下载</a>。</div></eq>
+        <eq name="ppvod.playname" value="sohu"><div class="txt">在线观看无须安装播放器</div></eq>
+        <eq name="ppvod.playname" value="sinahd"><div class="txt">在线观看无须安装播放器</div></eq>
+        <eq name="ppvod.playname" value="bdhd"><div class="txt">百度影音需要安装播放器才能观看 <a target="_blank" href="http://dl.p2sp.baidu.com/BaiduPlayer/un2/BaiduPlayerNetSetup_2.exe">点击下载最新版本</a></div></eq>
+        <eq name="ppvod.playname" value="qvod"><div class="txt">快播QVOD需要安装播放器才能观看 <a target="_blank" href="http://dl.kuaibo.com/QvodSetup5.exe">点击下载最新版本</a></div></eq>
+     <div class="order">排序：<a class="desc" href="javascript:void(0);" data="{$i-1}">降序</a></div>   
+      </div>
+      <div class="content">
+        <p class="play-list">
+         <php>$countji=count($ppvod['son'])-1;if($ppvod['son']>10){krsort($ppvod['son']);}</php>
+         <volist name="ppvod['son']" id="ppvodson" key="iii">
+         <a target="_blank" href="{$ppvodson.playurl}">{$ppvodson.playname}{$ppvod.playcount}<eq name="iii" value="1"><span class="new">new</span></eq></a>
+        </volist>
+         </p>
+      </div>
+    </div>
+    </neq>
+   </volist>
+  </div>
+  <!-- // ui-box end -->
+  <div class="ui-sponsor">
+{:getadsurl('vod_960_03')}
+  </div>
+         <volist name="vod_playlist" id="ppvod"> 
+<if condition="$ppvod.playname eq down">
+ <script src="/static/js/down.js"></script>
+ <div class="w1000 ui-box" id="downlist_1">
+<div class="down-title"><a href="javascript:void(0);" ><span id="downzk" class="zk">展开全部</span></a><h2>Down 影片下载</h2></div>
+<div class="down_list">   
+      <ul id="downul">
+       <volist name="ppvod['son']" id="ppvodson" key="iii">
+       <php> $thunderUrl = ThunderEncode("$ppvodson[playpath]"); </php>
+      <li><input type="checkbox" name="down_url_list_0" class="down_url" value="{$thunderUrl}" file_name="{$vod_name}{$ppvodson.playname}" /><p><strong class="down_part_name">{$vod_name}{$ppvodson.playname}</strong><input type="text" class="thunder_url" title="鼠标左键单击可全选后手动复制该条迅雷地址进行分享或其它操作" onclick="this.select()" /></p><span><label class="thunder_down">迅雷下载</label><label class="qqdl">旋风下载</label><label class="kk">看看播放</label></span></li>
+     </volist> 
+      </ul>
+   <div class="downtools box">
+       <input id="allcheck1" onclick="CheckAll(1)" type="checkbox" name="checkall"><em>全选</em><a href="javascript:void(0);" target="_self" class="thunder_down_all">迅雷批量下载</a><a href="javascript:void(0);" target="_self" class="xf_down_all">旋风批量下载</a>
+      </div>
+      </div>
+      </div>
+       <else/>
+       
+</if> 
+</volist>
+  <!-- // ui-sponsor end -->
+  <div class="ui-box" id="like-focus">
+    <div class="ui-title">
+      <h2>喜欢看“<strong>{$vod_name}</strong>”的人也喜欢：</h2>
+    </div>
+    <ul class="img-list fn-clear">
+        <php>$vod_gold=ff_mysql_vod('cid:'.$list_id.';limit:7;order:vod_hits_month desc');</php>
+     <volist name="vod_gold" id="ppvod">
+      <li><a class="play-img" target="_blank" href="{$ppvod.vod_readurl}"><img src="{$ppvod.vod_picurl}" alt="{$ppvod.vod_name|msubstr=0,25}" />
+        <label class="mask"></label>
+        <label class="text"><neq name="ppvod.vod_continu" value="0">第{$ppvod.vod_continu}集<else/>{$ppvod.vod_title|default='全集'}</neq></label>
+        <label class="score"><eq name="ppvod.vod_gold" value="0">{$ppvod.vod_gold}<else/>{$ppvod.vod_gold}</eq></label>
+        </a>
+        <h5><a target="_blank" href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">{$ppvod.vod_name|msubstr=0,25}</a></h5>
+      </li>
+  </volist> 
+    </ul>
+    <!-- // img-list end -->
+    <ul class="txt-list">
+    <php>$hot_week = ff_mysql_vod('cid:'.$list_id.';limit:5,20;order:vod_hits_month desc');</php>
+         <volist name="hot_week" id="ppvod">
+      <li><span>{$i}.</span><a target="_blank" href="{$ppvod.vod_readurl}">{$ppvod.vod_name|msubstr=0,25}</a></li>
+
+</volist> 
+    </ul>
+    <!-- // txt-list End -->
+  </div>
+  <!-- // ui-box#like-focus end -->
+  <div class="ui-box" id="juqing" >
+    <div class="ui-title">
+      <h3>剧情介绍</h3>
+    </div>
+    <div class="tjuqing">
+    {$vod_content} </div>
+    </div>
+  <!-- // ui-box end -->
+  <div class="ui-sponsor">
+{:getadsurl('vod_960_04')}
+  </div>
+  <!-- // ui-sponsor end -->
+  <div class="ui-box ui-qire" id="star-collection">
+    <h3>明星合集专题</h3>
+    <ul class="txt-list fn-clear">
+    <php>$special_new = ff_mysql_special('limit:0,16;order:special_id desc');</php>
+<fflist name="special_new" id="ppvod">
+      <li><a href="{$ppvod.special_readurl}" target="_blank">{$ppvod.special_name|msubstr=0,20}</a></li>
+      </fflist>	
+    </ul>
+  </div>
+   <!-- UY BEGIN -->
+   <div class="ui-box" id="juqing" >
+       <div class="ui-title">
+      <h3>评论</h3>
+    </div>
+    <div class="tjuqing">
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1544538"></script>
+<!-- UY END -->
+</div>
+    </div>
+  <!-- // star-collection end -->
+</div>
+<!-- // wrap End -->
+<include file="pp:footer" />
+<script type="text/javascript" src="/static/js/jquery.colorbox.js"></script>
+<script type="text/javascript" src="/static/js/jquery.vod.js"></script>
+<script type="text/javascript" src="/static/js/gold.js"></script>
+<script language="javascript">FF.History.Insert('{$vod_name}','{$vod_readurl}',10,7,'','');</script>
+{$vod_hits_insert}
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最新{$list_name}-{$list_dir}{$list_name_big}{$list_name}-2011最新{$list_name}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="最新{$list_name}包含的影片有<volist name='vod_list' id='ppvod'>{$ppvod.vod_name|msubstr=0,10},</volist>完全免费在线观看！">
+<style>
+.letter{ clear:both; height:30px; line-height:30px}
+.letter a{ margin:0 10px; font-size:14px}
+</style>
+<include file="Home:header" />
+</head>
+<body>
+<php>$array_letter = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');</php>
+<div class="wrap">
+    <include file="pp:header" />
+    <div class="letter"><volist name="array_letter" id="letter"><a href="#{$letter}">{$letter|strtoupper}</a></volist><a href="#num">1-9</a></div>
+    <div class="box">
+     	<php>$vod_num = ff_mysql_vod('cid:'.$list_id.';letter:1,2,3,4,5,6,7,8,9;limit:200;order:vod_letter asc,vod_addtime desc');</php>
+       	<div class="top"><h3><span>共<strong>{:count($vod_num)}</strong>部</span>数字<a name="num"></a></h3></div>
+        <ul class="hang1"><volist name="vod_num" id="ppvod" mod="4">
+        <li style="padding-left:5px"><a href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">{$ppvod.vod_name|msubstr=0,12,'utf-8',true|getcolor=$ppvod['vod_color']}</a></li>
+    	<eq name="mod" value="0"></ul><in name="i" value="8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,192"><ul class="hang1"><else /><ul class="hang2"></in></eq>
+    	</volist></ul>
+    </div>
+    <volist name="array_letter" id="letter">
+    <div class="box">
+     	<php>$vod_num = ff_mysql_vod('cid:'.$list_id.';letter:'.$letter.';limit:200;order:vod_letter asc,vod_addtime desc');</php>
+       	<div class="top"><h3><span>共<strong>{:count($vod_num)}</strong>部</span>{$letter|strtoupper}<a name="{$letter}"></a></h3></div>
+        <ul class="hang1"><volist name="vod_num" id="ppvod" mod="4">
+        <li style="padding-left:5px"><a href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">{$ppvod.vod_name|msubstr=0,12,'utf-8',true|getcolor=$ppvod['vod_color']}</a></li>
+    	<eq name="mod" value="0"></ul><in name="i" value="8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,192"><ul class="hang1"><else /><ul class="hang2"></in></eq>
+    	</volist></ul>
+    </div>
+    </volist>    
+    <include file="pp:footer" />      
+</div>
+</body>
+</body>
+</html>

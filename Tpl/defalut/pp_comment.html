@@ -1,0 +1,13 @@
+<notempty name="cm_list">
+    <ul class="list"><volist name="cm_list" id="ppvod">
+    <li><div class="autoheight">
+        <p><span class="time">{$ppvod.cm_addtime|date='Y-m-d',###}</span><strong>{$ppvod.cm_floor}楼 {$ppvod.user_name|htmlspecialchars|remove_xss}</strong><br />{$ppvod.cm_content|htmlspecialchars|remove_xss}</p>
+    </div></li>
+    </volist></ul>
+    <if condition="$cm_count gt C('user_cmnum')"><div class="pages">{$cm_pages}</div></if>
+</notempty>
+<!--发表评论-->
+<div class="form">
+    <textarea name="comment_content" id="comment_content" rows="5" onfocus="if(this.value=='请在这里发表您的个人看法，最多200个字。'){this.value='';}" onblur="if(this.value==''){this.value='请在这里发表您的个人看法，最多200个字。';};" maxlength="200">请在这里发表您的个人看法，最多200个字。</textarea>
+    <p><span id="comment_tips"></span><input id="comment_button" class="cm_button" onclick="FF.Comment.Post();" type="button" value="发表评论"/></p>
+</div>

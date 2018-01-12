@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>电视剧排行榜 热门电视剧 - {$sitename}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="<notempty name="list_description">{$list_description}<else/>{$description}</notempty>">
+<include file="system:js" />
+</head>
+<body>
+<include file="pp:header" />
+<!-- // header end -->
+<div id="content" class="layout">
+  <div class="bread-crumb-nav fn-clear">
+    <ul class="bread-crumbs">
+      <li class="home"><a href="{$root}">首页</a></li>
+      <li>电视剧点击排行榜</li>
+    </ul>
+    <!-- // bread-crumbs end -->
+  </div>
+  <!-- // bread-crumb-nav end -->
+  <div class="ui-box ui-qire fn-clear" id="qire-top">
+    <div class="qire-bar top-catalog">
+      <h2><a href="{:ff_mytpl_url('my_top.html')}">排行榜首页</a></h2>
+      <ul>
+        <li class="current"><a href="{:ff_mytpl_url('my_tv_top.html')}">电视剧</a></li>
+        <li ><a href="{:ff_mytpl_url('my_mov_top.html')}">电影</a></li>
+        <li ><a href="{:ff_mytpl_url('my_comic_top.html')}">经典动漫</a></li>
+        <li ><a href="{:ff_mytpl_url('my_variety_top.html')}">综艺娱乐</a></li>
+        <li ><a href="{:ff_mytpl_url('my_weidy_top.html')}">微电影</a></li>
+      </ul>
+    </div>
+    <div class="qire-box top-content">
+      <div class="top-item-box" id="top-detail">
+        <div class="ui-title fn-clear">
+          <ul class="ui-top-tab">
+            <li class="current"><a href="javascript:;">全部</a></li>
+<volist name="cattvlist" id="vo" offset="0" length='8'>
+            <li><a href="javascript:;">{$vo.m_name}</a></li>
+            </volist> 
+          </ul>
+          <h3>电视剧排行榜 </h3>
+        </div>
+       <div class="ui-top-tab-item ui-top-tab-item-current">
+          <ul class="top-list-detail fn-clear">
+          <php>$vod_hot_weidy_phb = ff_mysql_vod('cid:2;limit:100;order:vod_gold desc'); </php>
+            <fflist name="vod_hot_weidy_phb" id="ppvod">
+            <li><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit"><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name}</a></span><span class="area">{$ppvod.vod_area}</span><span class="type"><a href="{$ppvod.list_url}" target="_blank">{$ppvod.list_name}</a></span><span class="score"><eq name="ppvod.vod_gold" value="0">{$ppvod.vod_gold}
+                      <else/>
+                      {$ppvod.vod_gold}</eq></span></li>
+            
+          </fflist>
+          </ul>
+        </div>
+        <!-- // ui-top-tab-item end -->
+     <volist name="catzylist" id="vo" offset="0" length='8'>
+        <div class="ui-top-tab-item">
+          <ul class="top-list-detail fn-clear">
+                   <php>$qq182377860_new = ff_mysql_vod('cid:35;mcid:'.$vo[m_cid].';limit:100;order:vod_hits desc');</php>
+            <fflist name="qq182377860_new" id="ppvod">
+            <li><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit"><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name}</a></span><span class="area">{$ppvod.vod_area}</span><span class="type"><a href="{$ppvod.list_url}" target="_blank">{$ppvod.list_name}</a></span><span class="score"><eq name="ppvod.vod_gold" value="0">{$ppvod.vod_gold}
+                      <else/>
+                      {$ppvod.vod_gold}</eq></span></li>
+            
+          </fflist>
+          </ul>
+        </div>
+         </volist>
+      </div>
+    </div>
+    <script type="text/javascript">
+			$(document).ready(function(){
+				$("#top-detail").each(function(){
+					var intervalID; 
+					var curLi; 
+					var $tabNav = $(this).find(".ui-top-tab li");
+					var $tabBox = $(this).find(".ui-top-tab-item");
+					$(this).find(".ui-top-tab li:first").addClass("current"); ;
+					$(this).find(".ui-top-tab-item:first").addClass("ui-top-tab-item-current"); 
+					$tabNav.mouseover(function(){ 
+						curLi=$(this); 
+						intervalID=setInterval(onmouseover,2000);
+					}); 
+					function onmouseover(){ 
+						$tabBox.removeClass("ui-top-tab-item-current"); 
+						$tabBox.eq($tabNav.index(curLi)).addClass("ui-top-tab-item-current"); 
+						$tabNav.removeClass("current"); 
+						curLi.addClass("current"); 
+					}
+					$tabNav.mouseout(function(){ 
+						clearInterval(intervalID); 
+					}); 
+					$tabNav.click(function(){
+						$tabBox.removeClass("ui-top-tab-item-current"); 
+						$tabBox.eq($tabNav.index(curLi)).addClass("ui-top-tab-item-current"); 
+						$tabNav.removeClass("current"); 
+						curLi.addClass("current"); 
+					}); 
+				}); 
+			});		
+		</script>
+  </div>
+  <!-- // ui-box.ui-qire end -->
+  <include file="pp:foot_mcid" />
+</div>
+<!-- //content end -->
+<include file="pp:footer" />
+</body>
+</html>

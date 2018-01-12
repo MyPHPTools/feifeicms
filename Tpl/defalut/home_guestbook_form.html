@@ -1,0 +1,35 @@
+<script language="javascript">
+var reloadcode = function(){
+	$('#safecode').attr('src','{$root}index.php?s=Vcode-Index-time='+new Date());
+}
+$(document).ready(function(){
+	$('#gb_content').focus(function(){
+		if($('#gb_content').val() == '请留下您的宝贵意见，最多200个字。'){
+			$('#gb_content').val('');
+		}
+	});
+	$('#gb_content').blur(function(){
+		if($('#gb_content').val() == ''){
+			$('#gb_content').val('请留下您的宝贵意见，最多200个字。');
+		}
+	});	
+	$('#gb_vcode').focus(function(){
+		$('#gb_vcode_html').html('<a href="javascript:reloadcode()"><img src="{$root}index.php?s=Vcode-Index" alt="看不清楚换一张" name="safecode" border="0" align="absbottom" id="safecode"></a>');
+	});
+	$("#guestbook").submit( function () {
+		if($('#gb_content').val().length>200){
+			$('#gb_tips').html('您输入的留言信息过长，请删减一些！');
+  			return false;
+		}
+		if($('#gb_content').val() == '请留下您的宝贵意见，最多200个字。'){
+			$('#gb_content').select();
+			$('#gb_tips').html('请输入留言信息！');
+  			return false;
+		}
+		if($('#gb_vcode').val() == ''){
+			$('#gb_tips').html('请输入验证码！');
+			return false;
+		}		
+	});
+});
+</script>

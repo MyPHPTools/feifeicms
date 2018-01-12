@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>JJPlayer播放器下载地址页面</title>
+<style> 
+html,body{margin:0;padding:0;width:100%}body{background-color:#000}
+#jjvod_box{position:relative;width:440px; height:150px; margin:140px auto; background:url(img/down_bg.png) no-repeat}
+#jjvod_btn{position:absolute; top:120px; left:110px; width:148px; height:42px; background:url(img/down_jjvod.png) no-repeat}
+#jjvod_btn a{display:block; width:148px; height:42px}
+</style>
+</head>
+<script type="text/javascript"> 
+function downinfo(){
+	var wdurl = unescape(window.location.href);
+	var allargs = wdurl.split("&");
+	var c=allargs[1].split("c=")[1];
+	if(c=="") c='00000';
+	var url = "http://dl.jijivod.com/JJPlayersetup_jjvod.exe";
+	window.location.href = url;
+}
+</script>
+<body>
+<div id="jjvod_box">
+<div id="jjvod_btn"><a href="javascript:void(0)" onclick="downinfo();"><img src="img/down_jjvod.png" alt=""></a></div>
+</div>
+ 
+</body>
+</html>
+

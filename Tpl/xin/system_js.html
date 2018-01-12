@@ -1,0 +1,22 @@
+<script language="javascript">
+<!-- 
+ window.onerror=function(){return true;} 
+// --></script>
+<script language="javascript">var Root='{$root}';var Sid='{$sid}';var Cid='{$list_id}';<if condition="$sid eq 1">var Id='{$vod_id}';<else />var Id='{$news_id}';</if></script>
+<link href="/static/css/base.css" type="text/css" rel="stylesheet" />
+<link href="/static/css/qirebox.css" type="text/css" rel="stylesheet" />
+<link href="favicon.ico" type="image/x-icon" rel="icon">
+<script language="javascript" src="/static/js/jquery.js" charset="utf-8"></script>
+<script language="javascript" src="/static/js/jquery-autocomplete.js" charset="utf-8"></script>
+<script language="javascript" src="/static/js/jquery-lazyload.js" charset="utf-8"></script>
+<script src="/static/js/jquery.base.js" type="text/javascript"></script>
+<script src="/static/js/jquery.superslide.js" type="text/javascript"></script>
+<script src="/static/js/playclass.js" type="text/javascript"></script>
+<script language="javascript" src="/static/js/js.js" charset="utf-8"></script>
+<php>$cattvlist = getlistmcat(2); </php>
+<php>$catmovlist = getlistmcat(1);</php>
+<php>$catdmlist = getlistmcat(3);</php>
+<php>$catzylist = getlistmcat(4);</php>
+<php>$catweilist = getlistmcat(35);</php>
+<php>$array_listtvid = getlistall(2);</php>
+<php>$array_listmovid = getlistall(1);</php>

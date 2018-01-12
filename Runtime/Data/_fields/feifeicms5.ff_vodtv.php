@@ -1,0 +1,1 @@
+a:3:{i:0;s:8:"vodtv_id";i:1;s:10:"vodtv_name";s:5:"_type";a:2:{s:8:"vodtv_id";s:12:"mediumint(8)";s:10:"vodtv_name";s:11:"varchar(50)";}}

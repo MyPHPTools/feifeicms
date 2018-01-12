@@ -1,0 +1,11 @@
+<if condition="c(url_html) eq 1">
+	<php>$newdig = 'id="Digup" '</php>
+</if>
+<div class="Digup" {$newdig}onmouseout="this.style.backgroundPosition='-189px 0'" onmouseover="this.style.backgroundPosition='0 0'">
+    <div class="Digbar"><div id="Digup_img"></div></div>
+    <span id="Digup_num"><span id="Digup_sp">0%</span> (<span id="Digup_val">{$news_up}</span>)</span>
+</div>
+<div class="Digdown" {$newdig}onmouseout="this.style.backgroundPosition='-378px 0'" onmouseover="this.style.backgroundPosition='-567px 0'">
+    <div class="Digbar"><div id="Digdown_img"></div></div>
+    <span id="Digdown_num"><span id="Digdown_sp">0%</span> (<span id="Digdown_val">{$news_down}</span>)</span>
+</div>

@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+<if condition="$list_pid eq 1">《{$vod_name}》{$vod_title}{$vod_playername}在线观看<elseif condition="$list_pid eq 2" />{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集{$vod_playername}在线观看<elseif condition="$list_id eq 3" />{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}话<notempty name="vod_title">{$vod_title}</notempty>{$vod_playername}在线观看<elseif condition="$list_id eq 4" />{$vod_name}第<notempty name="vod_title">{$vod_title}</notempty>期{$vod_playername}在线观看<else />《{$vod_name}》{$vod_jiname}{$vod_playername}在线观看</if>-{$sitename}</title>
+<if condition="$list_pid eq 2">
+<meta name="keywords" content="{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集,{$vod_name}{:str_replace(array('第','集'),array('',''),$vod_jiname)}集,{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集在线观看,{$vod_name}全集,电视剧{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集,{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集<notempty name="vod_title">{$vod_title}</notempty>在线观看,{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集{$vod_playername},{$vod_name}{$vod_playername}在线观看">
+<meta name="description" content="{$list_name}{$vod_name}全集由{$title}为您提供,正在为您播放{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集<notempty name="vod_title">{$vod_title}</notempty>{$vod_playername}在线观看{$vod_name}是{$vod_area}地区电视剧由{$vod_director}执导{$vod_actor}等主演参演的一部{$vod_mcid|ff_mcat_name=$vod_cid}电视剧上映时间为{$vod_year}年主要剧情：{$vod_content|h|msubstr=0,100}。">
+<elseif condition="$list_pid eq 1" />
+<meta name="keywords" content="{$vod_name}<notempty name="vod_title">{$vod_title}</notempty>,{$vod_name},{$vod_name}在线观看,{$vod_name}{$vod_playername},{$vod_name}下载,{$list_name}{$vod_name},{$vod_name}电影,{$vod_name}<notempty name="vod_title">{$vod_title}</notempty>在线观看,{$vod_name}{$vod_playername}在线观看.">
+<meta name="description" content="{$list_name}{$vod_name}由{$title}为您提供,正在为您播放{$vod_name}<notempty name="vod_title">{$vod_title}</notempty>{$vod_playername}在线观看{$vod_name}是{$vod_area}地区{$list_name}电影由{$vod_director}执导{$vod_actor}等参演的一部{$vod_mcid|ff_mcat_name=$vod_cid}电影上映时间为{$vod_year}年主要剧情：{$vod_content|h|msubstr=0,100}。">
+<elseif condition="$list_id eq 3" />
+<meta name="keywords" content="{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}画,{$vod_name}{:str_replace(array('第','集'),array('',''),$vod_jiname)}集,{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集在线观看,{$vod_name}全集,动画{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集,{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集<notempty name="vod_title">{$vod_title}</notempty>在线观看,{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集{$vod_playername},{$vod_name}{$vod_playername}在线观看">
+<meta name="description" content="{$list_name}{$vod_name}全集由{$title}为您提供,正在为您播放{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}集<notempty name="vod_title">{$vod_title}</notempty>{$vod_playername}在线观看,{$vod_name}是{$vod_area}制作,配音以及演员包括{$vod_actor}等属于{$vod_mcid|ff_mcat_name=$vod_cid}动画出品时间为{$vod_year}年主要剧情：{$vod_content|h|msubstr=0,100}。">
+<elseif condition="$list_id eq 4" />
+<meta name="keywords" content="{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}期,{$vod_name}{:str_replace(array('第','集'),array('',''),$vod_jiname)}期,{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}期在线观看,{$vod_name}全集,综艺节目{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}期,{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}期<notempty name="vod_title">{$vod_title}</notempty>在线观看,{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}期{$vod_playername},{$vod_name}{$vod_playername}在线观看">
+<meta name="description" content="综艺节目{$vod_name}由{$title}为您提供,正在为您播放{$vod_name}第{:str_replace(array('第','集'),array('',''),$vod_jiname)}期<notempty name="vod_title">{$vod_title}</notempty>{$vod_playername}在线观看{$vod_name}是{$vod_area}地区综艺节目由{$vod_director}制作主持人{$vod_actor}等的{$vod_mcid|ff_mcat_name=$vod_cid}电视节目节目详细：{$vod_content|h|msubstr=0,100}。">
+<else />
+<meta name="keywords" content="{$vod_name}下载,{$vod_name}在线观看,{$vod_name}高清下载,{$vod_name}qvod,{$vod_name}高清">
+<meta name="description" content="{$vod_name}高清在线观看 {$vod_name}电影 {$vod_name}下载 {$vod_name}演员表 {$vod_name}上映时间：{$vod_year} {$vod_name}剧情：{$vod_content|h|msubstr=0,100}">
+</if>
+<include file="system:js" />
+<script>PlayHistoryObj.addPlayHistory('{$vod_name}{$vod_jiname}',location.href)</script>
+<script type="text/javascript">
+var loadcomm=0;
+		$(document).ready(function(){
+			$(document).scroll(function(event){
+				var docViewTop = $(window).scrollTop(); //当前屏幕顶端从页面起始位置的纵坐标
+				var docViewBottom = docViewTop + $(window).height(); //当前屏幕底端从页面起始位置的纵坐标 页面滚动的时候，这两个值在变化
+				$("div.maxBox").each(function(index){ // 遍历每个maxBox div
+					var divTop = $(this).offset().top; // 某个maxBox div的顶端相对于页面起始位置的纵坐标
+					var divBottom = divTop + $(this).height();  // 某个maxBox div的底端相对于页面起始位置的纵坐标 不管页面有没有滚动，这两个值固定
+					var $li = $('li#'+$(this).attr('id')+'-nav')
+					
+					if (divTop<docViewTop+250) { // docViewTop+300大于divTop，表示div顶端已经滚动距离屏幕上边沿<=300px的位置，设置左边按钮属性					
+						$li.siblings('li').removeClass('current');
+						$li.addClass('current');
+					} else {
+						$li.removeClass('current');
+					}
+				});
+ 
+			});
+			
+			// cmt-input-tip
+			$("#cmt-input-tip .ui-input").focus(function(){
+				$("#cmt-input-tip").hide();
+				$("#cmt-input-bd").show();
+				$("#cmt-input-bd .ui-textarea").focus();
+			});
+			
+			// .play-page-tip
+
+		});
+		
+		function showPlay(){
+
+			document.getElementById("play_movie_list").style.display="block";
+
+		}
+
+		function hidePlay(){
+
+			document.getElementById("play_movie_list").style.display="none";
+
+		}
+
+	</script>
+</head>
+<body>
+<include file="pp:header" />
+  <!-- // subnav end -->
+  <div class="bread-crumb-nav bread-crumb-nav-play">
+    <div class="layout fn-clear">
+      <div class="fn-right"><a href="/help/">无法观看?</a></div>
+      <ul class="bread-crumbs">
+        <li class="home"><a href="{$root}">首页</a></li>
+        <li><a href="{$list_url}">{$list_name}</a> {$vod_mcid|ff_mcat_url=$vod_cid}</li>
+        <li><a href="{$vod_readurl}">{$vod_name}</a></li>
+        <li>正在播放</li>
+      </ul>
+      <!-- // bread-crumbs end -->
+    </div>
+  </div>
+  <!-- // bread-crumb-nav end -->
+</div>
+<!-- // header end -->
+<div id="play-focus">
+  <!-- // layout End -->
+  <div  class="layout fn-clear">
+<div id="player1">
+     {$vod_player}
+     </div>
+    <!-- // player End -->
+<div id="player-union">
+      <div class="player-union">
+AD1
+
+      </div>
+
+      <div class="player-union">
+AD2
+      </div>
+    </div>
+    <!-- // player-ad End -->
+  </div>
+  <!-- // play End -->
+</div>
+<!-- // play-focus end -->
+
+<div id="content" class="layout">
+  <div class="ui-box" id="like-focus">
+    <div class="detail-related fn-clear">
+      <h5 class="hd">你是否也在<strong>寻找</strong>：</h5>
+      <p class="bd"></p>
+    </div>
+    <!-- // detail-related End -->
+    <ul class="img-list">
+             <php>$vod_gold=ff_mysql_vod('cid:'.$list_id.';limit:7;order:vod_hits_month desc');</php>
+     <volist name="vod_gold" id="ppvod">
+      <li><a class="play-img" target="_blank" href="{$ppvod.vod_readurl}"><img src="{$ppvod.vod_picurl}" alt="{$ppvod.vod_name|msubstr=0,25}" />
+        <label class="mask"></label>
+        <label class="text"><neq name="ppvod.vod_continu" value="0">第{$ppvod.vod_continu}集<else/>{$ppvod.vod_title|default='全集'}</neq></label>
+        <label class="score"><eq name="ppvod.vod_gold" value="0">{$ppvod.vod_gold}<else/>{$ppvod.vod_gold}</eq></label>
+        </a>
+        <h5><a target="_blank" href="{$ppvod.vod_readurl}">{$ppvod.vod_name|msubstr=0,25}</a></h5>
+      </li>
+  </volist> 
+    </ul>
+    <!-- // pic-list End -->
+    <ul class="txt-list txt-list-small">
+    <php>$hot_week = ff_mysql_vod('cid:'.$list_id.';limit:5,20;order:vod_hits_month desc');</php>
+         <volist name="hot_week" id="ppvod">
+      <li><span>{$i}.</span><a target="_blank" href="{$ppvod.vod_readurl}">{$ppvod.vod_name|msubstr=0,25}</a></li>
+
+</volist>
+    </ul>
+    <!-- // txt-list End -->
+  </div>
+  <!-- //like-focus end -->
+  <div class="ui-sponsor">
+AD
+  </div>
+  <!-- // ui-sponsor end -->
+  <div class="ui-box" id="play-help">
+    <div class="ui-title">
+      <h2><strong>播放必读</strong></h2>
+    </div>
+    <div class="play-help-item" id="baidutip">
+      <h3>百度影音常见问题</h3>
+      <ul>
+        <li>
+          <label>紧急BUG一：</label>
+          当您打开影片时候，出现了一部已经缓冲完毕，且影片内容不正确时，请打开baidu player这个下载目录，删除清空里面下载的影片，然后刷新页面即可。注：删除前，请退出打开了百度影音播放页面和“百度影音”播放器或“baidup2pservice”进程，防止由于软件对内容的读写导致无法删除。</li>
+        <li>
+          <label>紧急BUG二：</label>
+          当缓冲一直为0时，请尝试刷新一下页面。<a href="{$root}/help/index.html#n2">详情</a></li>
+        <li>
+          <label>常见问题一：</label>
+          如打开本页的播放窗口提示需要安装播放器，请<a href="http://dl.client.baidu.com/BaiduPlayer/un/BaiduPlayer_49059037.exe" target="_blank">点击下载百度影音</a>，一路“下一步”安装，完毕后刷新页面即可</a></li>
+        <li>
+          <label>常见问题二：</label>
+          开始播后将有5-15秒左右的缓冲时间，属于正常现象；如播放的页面长时间一直显示为0%，很有可能资源被删除，您可以<a target="_blank" href="{$url_guestbook}">点击这里留言</a>报错</li>
+        <li>
+          <label>常见问题三：</label>
+          百度影音太占网速，一播放家里其他人都不能上网了怎么办？百度影音为达到更好的缓冲效果，有时可能会出现过度占用网速的情况。您可以在播放器设置-下载面板中设置最大上传下载速度。也可以在播放器设置-系统中勾选“退出时自动结束p2p进程”，然后在系统托盘图标上右键选择完全退出。<a href="{$root}/help/index.html#n4">详情</a></li>
+        </li>
+        <li class="skills">
+          <label>播放技巧一：</label>
+          正常情况下的新片和热片，百度影音都能保持非常流畅的播放；如有出现不流畅，您可以选择暂停缓冲一会再观看，或是检查一下自己电脑是否开启了其他占用网速的软件。（百度影音是一个P2P的播放软件，用户越多速度越快，所以部分老片冷片会速度较慢，用户数增加后这个问题会很快解决）</li>
+        <li>
+          <label>播放技巧二：</label>
+          页面播放的东西，会在本地存一份，具体可在“播放器设置”-“下载面板”中可以查看和设置缓冲文件目录。在下载过程中若硬盘空间不足，百度影音会弹出提示窗口。只需重新设置缓冲目录或者删除旧缓冲文件即可。</li>
+        <li>
+          <label>具体可以访问以下图文并茂的链接</label>
+          <a target="_blank" href="/baiduplayer/F.html">百度影音常见问题</a>、<a target="_blank" href="/baiduplayer/">产品简介</a>、<a target="_blank" href="/baiduplayer/G.html">快速入门</a>、<a target="_blank" href="/baiduplayer/O.html">操作指南</a>、</li>
+      </ul>
+    </div>
+    <!-- // play-help-item End -->
+    <div class="play-help-item">
+      <h3>Flash常见问题</h3>
+      <ul>
+        <li>
+          <label>常见问题一：</label>
+          如打开本页的播放窗口空白或有个是个大叉叉，请<a href="http://fpdownload.macromedia.com/get/flashplayer/current/licensing/win/install_flash_player_10_active_x.exe" target="_blank">点击这里</a>下载Flash 9插件,然后重启浏览器,<a href="{$root}/FAQ/#q1">点击看图解</a></li>
+        <li>
+          <label>常见问题二：</label>
+          在已安装Flash的情况下，如打开的本页播放区域是空白一片，可以尝试刷新本页（网速慢使播放器加载稍慢)</li>
+        <li>
+          <label>常见问题三：</label>
+          节目出现双语对白，可打开电脑上音量调节功能，拉动平衡杆到任意一边调整语种，<a target="_blank" href="{$root}/FAQ/#q3">点击看图解</a></li>
+        <li>
+          <label>常见问题四：</label>
+          为何有的节目看到一半就断掉或没有响应了？最有效的解决方法是：IE浏览器-->工具--> Internet选项-->点击“删除文件”按钮，然后关闭浏览器重新打开 <span style="text-align:right"><a target="_blank" href="{$root}/FAQ/">点击查看更多使用帮助</a></span></li>
+        <li class="skills">
+          <label>播放技巧一：</label>
+          部分视频如果出现卡的情况，可暂停一会，让其缓冲后再播放</li>
+        <li>
+          <label>播放技巧二：</label>
+          可提前打开下一集的页面，播放后按暂停（不要关闭），让其缓冲，这样看完这集就可以很流畅的看下一集了。</li>
+      </ul>
+    </div>
+    <!-- // play-help-item End -->
+  </div>
+  <!-- //ui-box wnd -->
+  <!-- //ui-sponsor end -->
+</div>
+<!-- // content end -->
+<include file="pp:footer" />
+</html>

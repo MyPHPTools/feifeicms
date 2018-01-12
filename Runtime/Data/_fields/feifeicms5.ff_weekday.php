@@ -1,0 +1,1 @@
+a:3:{i:0;s:10:"weekday_id";i:1;s:11:"weekday_cid";s:5:"_type";a:2:{s:10:"weekday_id";s:12:"mediumint(8)";s:11:"weekday_cid";s:10:"tinyint(1)";}}

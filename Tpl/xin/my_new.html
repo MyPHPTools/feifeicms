@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最新更新的100个电视剧、电影、动漫节目 - {$sitename}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="<notempty name="list_description">{$list_description}<else/>{$description}</notempty>">
+<script src="/static/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<include file="system:js" />
+</head>
+<body>
+<include file="pp:header" />
+<div id="content" class="layout">
+<div class="bread-crumb-nav fn-clear">
+  <ul class="bread-crumbs">
+    <li class="home"><a href="{$root}">首页</a></li>
+    <!--<li>最近100个更新</li>-->
+    <li>最近100个更新</li>
+  </ul>
+  <!-- // bread-crumbs end -->
+</div>
+<!-- // bread-crumb-nav end -->
+<div class="ui-box ui-qire fn-clear" id="qire-lasted">
+<div class="ui-title fn-clear">
+  <h2>最近100个更新</h2>
+  <div class="lasted-time fn-right">更新时间</div>
+  <div class="lasted-tags fn-right">标签</div>
+  <div class="lasted-type fn-right">类型</div>
+</div>
+<div class="ui-cnt">
+<ul class="lasted-list fn-clear">             
+                   
+   <php>$vod_hot_tv = ff_mysql_vod('cid:1,2,3,4,35;limit:100;order:vod_addtime desc'); </php>
+                
+                <php>    if($_GET[order])
+    $s_order=$_GET[order]." DESC";
+    else
+    $s_order="vod_addtime desc,vod_hits desc,vod_gold desc";  $vod_list=ff_mysql_vod('mcid:'.$_GET['mcid'].';cid:'.$list_id.';year:'.$_GET[year].';letter:'.$_GET[letter].';area:'.$_GET[area].';language:'.$_GET[language].';limit:16;page:true;order:'.$s_order.';');$page = $vod_list[0]['page'];$pagetop = $vod_list[0]['pagetop'];</php>
+<fflist name="vod_hot_tv" id="ppvod">                 
+<li>
+  <div class="lasted-num fn-left">∷</div>
+  <div class="lasted-tit fn-left">
+    <h5 class="show-tipinfo"><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name}</a><em>/</em><a href="{$ppvod.vod_playurl}"><neq name="ppvod.vod_continu" value="0">第{$ppvod.vod_continu}集<else/>{$ppvod.vod_title|default='全集'}</neq></a></h5>
+    <div class="tipInfo">
+      <div class="play-img"><img src="{$ppvod.vod_picurl}" alt="{$ppvod.vod_name}" /></div>
+      <dl>
+        <dt>{$ppvod.vod_name}</dt>
+        <dd>
+          <label>主演：</label>{$ppvod.vod_actor|ff_search_url}</dd>
+        <dd class="jq">
+          <label>剧情：</label>{$ppvod.vod_content|msubstr=0,100,'utf-8',true}…</dd>
+        <dd class="bg">
+          <label><neq name="ppvod.vod_continu" value="0">第{$ppvod.vod_continu}集<else/>{$ppvod.vod_title|default='全集'}</neq></label>
+        </dd>
+        <dd class="bg">
+          <label>更新时间：</label>{$vod_addtime|date='Y-m-d',###}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="lasted-type fn-left"><a href="{$ppvod.list_url}" target="_blank">{$ppvod.list_name}</a></div>
+  <div class="lasted-tags fn-left">{$ppvod.vod_mcid|ff_mcat_url=$ppvod['vod_cid']}</div>
+  <div class="lasted-time fn-right">{$ppvod.vod_addtime|date='Y-m-d H:i:s',###}</div>
+</li>
+</fflist>  
+
+<ul>
+</div>
+</div>
+<!-- // ui-box#qire-lasted end -->
+  <include file="pp:foot_mcid" />
+</div>
+<!-- // wrap End -->
+<include file="pp:footer" />
+</body>
+</html>

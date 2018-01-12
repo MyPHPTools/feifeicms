@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="最新{$list_name}包含的影片有<volist name='vod_list' id='ppvod'>{$ppvod.vod_name|msubstr=0,10},</volist>完全免费在线观看！">
+<include file="Home:header" />
+</head>
+<body>
+<div class="wrap">
+   <include file="pp:header" />
+    <div class="top960">{:getadsurl('top960')}</div>
+    <div class="vodlist_l box">
+      <div class="top">
+		<h3><a href="{$root}">首页</a></label> > <a href="{$url_special}">专题</a></h3>
+      </div>
+      <php>$special_list = ff_mysql_special('limit:8;page:true;order:special_addtime desc,special_id desc');$page = $special_list[0]['page'];</php>
+      <neq name="special.0.count" value="0"><volist name="special_list" id="ppvod">
+        <ul><a href="{$ppvod.special_readurl}"><img src="{$ppvod.special_logo}" alt="专题《{$ppvod.special_name}》" /></a>
+        <h2><a href="{$ppvod.special_readurl}">{$ppvod.special_name}</a></h2>
+        <p class="content">{$ppvod.special_content|msubstr=0,250,'utf-8',true}<a href="{$ppvod.special_readurl}">[详细]</a></p>
+        </ul></volist>
+        <div class="pages">{$page}</div>
+      <else/>
+       	 <ul>专题暂无数据！</ul>
+      </neq>
+    </div>
+    <div class="vodlist_r box">
+    	<div class="top">
+    		<h3><span>人气</span><a href="{$url_special}">热门专题</a></h3>
+        </div>
+        <ul><php>$special_hits = ff_mysql_special('limit:30;order:special_hits desc');</php><volist name="special_hits" id="ppvod"><li><span>{$ppvod.special_hits}</span><em>{$i}</em><a href="{$ppvod.special_readurl}">{$ppvod.special_name|msubstr=0,20}</a></li></volist></ul>        
+    </div>     
+    <div class="blank"></div>
+    <include file="pp:footer" /> 
+</div>
+</body>
+</html>

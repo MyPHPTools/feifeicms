@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<meta name="keywords" content="{$news_name}">
+<meta name="description" content="{$news_remark}">
+<include file="Home:header" />
+</head>
+<body>
+<php>$gold_desc = ff_mysql_news('limit:15;order:news_up desc');</php>
+<div class="wrap">
+<include file="pp:header" />
+<div class="top960">{:getadsurl('top960')}</div>
+<div class="news box">
+	<div class="title"><a href="{$root}">网站首页</a></label> > <a href="{$list_url}">{$list_name}</a> > {$news_name}</div>
+    <h1>{$news_name}</h1>
+    <div class="source">来源:{$news_inputer} {$news_addtime|date='Y-m-d H:i:s',###} <a href="#comment">参与评论</a></div>
+    <div class="content">{:ff_content_url($news_content,$Tag,2)}</div>
+    <div class="writer">
+    	<span class="admin">责任编辑:{$news_inputer}</span>
+    	<span class="gray">本文仅代表作者观点，与{$sitename}立场无关。</span>
+    </div>
+    <div class="digg">
+        <include file="Home:home_news_updown" />
+    </div>
+    <div class="comment"><a href="comment"></a>
+    	<div class="h1">网友评论:</div>
+    	<div class="Comment cmtop" id="Comment">评论加载中...</div>
+    </div>
+</div>
+<div class="vodlist_r box">
+    <div class="top"><h3>推荐阅读</h3></div>     
+    <ul><volist name="gold_desc" id="ppvod">
+    <li><em>{$i}</em><a href="{$ppvod.news_readurl}">{$ppvod.news_name|msubstr=0,20,'utf-8',true}</a></li>
+    </volist></ul>        
+</div>     
+<div class="blank"></div>{$news_hits_insert}
+<include file="pp:footer" />
+</div>
+</body>
+</html>

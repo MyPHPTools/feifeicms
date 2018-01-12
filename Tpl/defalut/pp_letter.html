@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最新{$list_name}-{$list_dir}{$list_name_big}{$list_name}-2011最新{$list_name}{$list_title}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="最新{$list_name}包含的影片有<volist name='vod_list' id='ppvod'>{$ppvod.vod_name|msubstr=0,10},</volist>完全免费在线观看！">
+<include file="Home:header" />
+</head>
+<body>
+<div class="wrap">
+    <include file="pp:header" />
+    <div class="top960">{:getadsurl('top960')}</div>
+    <div class="vodlist_l box">
+      <div class="top">
+		<h3><span><a href="{:UU('Home-vod/type',array('id'=>$list_id,'wd'=>'','letter'=>'','year'=>0,'area'=>'','order'=>'hits','p'=>1),false,true)}">按点播人气排序</a> <a href="{:UU('Home-vod/type',array('id'=>$list_id,'wd'=>'','letter'=>'','year'=>0,'area'=>'','order'=>'addtime','p'=>1),false,true)}">按更新时间排序</a></span><a href="{$root}">首页</a></label> > <a href="{$list_url}">{$list_name}</a></h3>
+      </div>
+<php>
+    if($list_id){
+        $vod_list = ff_mysql_vod('cid:'.$list_id.';limit:8;page:true;order:vod_addtime desc,vod_id desc');
+        $page = $vod_list[0]['page'];
+    }
+</php>      
+      <notempty name="vod_list"><volist name="vod_list" id="ppvod">
+        <ul><a href="{$ppvod.vod_readurl}"><img class="lazy" data-original="{$ppvod.vod_picurl}" src="{$tpl}/style/images/js/blank.png" alt="点击播放《{$ppvod.vod_name}》" /></a>
+        <h2><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name}</a><em>{$ppvod.vod_gold}</em><notempty name="ppvod.vod_title"><span>{$ppvod.vod_title}</span></notempty></h2>
+        <p class="space">主演∶{$ppvod.vod_actor|ff_search_url}</p>
+        <p>地区∶{$ppvod.vod_area|default='未录入'} 更新时间∶{$ppvod.vod_addtime|date='Y-m-d',###}</p>
+        <p class="content">{$ppvod.vod_content|msubstr=0,100,'utf-8',true}</p>
+        <p><a href="{$ppvod.vod_readurl}">影片详情</a> | <a href="{$ppvod.vod_playurl}">在线观看</a> | 影评({$ppvod.vod_golder})</p>
+        </ul></volist>
+        <div class="pages">{$page}</div>
+      <else />
+       	 <ul>该分类暂无数据！</ul>
+      </notempty>
+    </div>
+    <div class="vodlist_r box">
+    	<div class="top">
+    		<h3><span>评分</span><a href="{$list_url}">{$list_name} 排行榜</a></h3>
+        </div>     
+        <ul class="list300">{:getadsurl('list300')}</ul>
+        <ul><php>$gold_desc = ff_mysql_vod('cid:'.$list_id.';limit:30;order:vod_gold desc,vod_hits desc');</php>
+        <volist name="gold_desc" id="ppvod">
+        <li><span>{$ppvod.vod_gold}</span><em>{$i}</em><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name|msubstr=0,12}</a></li>
+        </volist></ul>        
+    </div>     
+    <div class="blank"></div>
+    <include file="pp:footer" />  
+</div>
+</body>
+</html>

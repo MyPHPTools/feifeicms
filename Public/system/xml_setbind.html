@@ -1,0 +1,7 @@
+<select name="cid" id="cid">
+<volist name="vod_list" id="ppvod">
+<option value="{$ppvod.list_id}" <eq name="ppvod.list_id" value="$vod_cid">selected</eq>>{$ppvod.list_name}</option>
+</volist>
+<option value="">取消绑定</option>
+</select>
+<input class="submit" type="button" value="提 交" onClick="submitbind($('#cid').val(),'{$_GET['bind']}');" style="cursor:pointer"> <input name="button" type="button" value="取 消" class="submit" onClick="hidebind();" style="cursor:pointer">

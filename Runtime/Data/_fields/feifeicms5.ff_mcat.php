@@ -1,0 +1,1 @@
+a:6:{i:0;s:5:"m_cid";i:1;s:9:"m_list_id";i:2;s:6:"m_name";i:3;s:7:"m_order";s:3:"_pk";s:5:"m_cid";s:5:"_type";a:4:{s:5:"m_cid";s:16:"int(10) unsigned";s:9:"m_list_id";s:16:"int(10) unsigned";s:6:"m_name";s:11:"varchar(30)";s:7:"m_order";s:7:"int(11)";}}

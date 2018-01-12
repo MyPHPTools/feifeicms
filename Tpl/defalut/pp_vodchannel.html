@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最新{$list_name}-{$list_dir}{$list_name_big}{$list_name}-2011最新{$list_name}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="最新{$list_name}包含的影片有<volist name='vod_list' id='ppvod'>{$ppvod.vod_name|msubstr=0,10},</volist>完全免费在线观看！">
+<include file="Home:header" />
+</head>
+<body>
+<php>$vod_news = ff_mysql_vod('cid:'.$list_id.';limit:120;order:vod_addtime desc');</php>
+<div class="wrap">
+  <include file="pp:header" />
+    <div class="top960">{:getadsurl('top960')}</div>
+     <div class="box">
+       	<div class="top"><h3><span>今天到目前已更新<strong>{:getcount('.$list_id.')}</strong>部{$list_name}</span><a href="{$list_url}">最新更新的{$list_name}</a></h3></div>
+        <ul class="hang1"><volist name="vod_news" id="ppvod" mod="4">
+        <li><b>{$ppvod.vod_addtime|getcolordate='m-d',###}</b><a href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">{$ppvod.vod_name|msubstr=0,8,'utf-8',true|getcolor=$ppvod['vod_color']}</a></li>
+    	<eq name="mod" value="0"></ul><in name="i" value="8,16,24,32,40,48,56,64,72,80,88,96,104,112"><ul class="hang1"><else /><ul class="hang2"></in></eq>
+    	</volist></ul>
+    </div>
+  <include file="pp:footer" />       
+</div>
+</body>
+</body>
+</html>

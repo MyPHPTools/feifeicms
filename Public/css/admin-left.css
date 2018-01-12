@@ -1,0 +1,49 @@
+@charset "utf-8";
+body {
+	margin:0px;
+	overflow:hidden;
+	font-size:12px;
+	background: #cad9ea;
+}
+a {
+	color: #135294;
+	text-decoration: none;
+}
+a:hover {
+	color: #990000;
+	text-decoration: underline;
+}
+ul,li{
+	list-style:none;
+}
+.body{
+	border-right:1px solid #F7F7F7;
+}
+.left {
+	padding-top:4px;
+	text-align:center;
+}
+.left a {
+	text-decoration: none;
+	font-size:12px;
+	display:block !important;
+	display:inline;
+	width:135px;
+	background:url("../images/admin/left_bg.gif") no-repeat -50px;
+	height:25px;
+	line-height:25px;
+	margin-bottom:2px;
+}
+.left a.line{
+	color:#666
+}
+.left a:hover,.left .on{
+	background:url("../images/admin/left_bg_hover.gif") no-repeat -50px;
+}
+.left .on{
+	color: #990000;
+	font-size:14px
+}
+.power{
+	font-size:12px; color: #666666; height:25px; text-align:center; font-family: Arial, Helvetica, sans-serif
+}

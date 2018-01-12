@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$list_name} - {$sitename}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="<notempty name="list_description">{$list_description}<else/>{$description}</notempty>">
+<meta name="generator" content="editplus" />
+<meta name="author" content="Fay" />
+<include file="system:js" />
+</head>
+<body>
+<include file="pp:header" />
+<div id="channel-nav">
+  <div class="layout">
+    <ul class="channel-catalog fn-clear">
+    <php>$catlist = getlistmcat($list_id); </php>
+     <volist name="catlist" id="vo" offset="0" length='13'>
+           <li><a target="_blank" href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$vo['m_cid']),true,false)}" title="{$vo.m_name}{:getlistname($list_id,'list_name')}">{$vo.m_name|msubstr=0,2}</a></li>
+            </volist>
+      <li class="top"><a href="{:ff_mytpl_url('my_weidy_top.html')}">微电影排行榜</a></li>
+    </ul>
+  </div>
+</div>
+<!-- // channel-nav end -->
+<div class="channel-focus">
+  <div class="channel-silder layout">
+    <ul class="channel-silder-cnt">
+      <php>$vod_wdy_hdf = ff_mysql_vod('cid:'.$list_id.';limit:9;field:vod_id,vod_cid,vod_mcid,vod_name,vod_pic,vod_actor,vod_director,vod_gold,vod_color,vod_title,vod_continu,vod_addtime,vod_area,vod_content,vod_year;order:vod_hits desc'); </php>     
+<fflist name="vod_wdy_hdf" id="ppvod">
+      <li class="channel-silder-panel fn-clear"><a class="channel-silder-img" target="_blank" href="{$ppvod.vod_readurl}"><img src="{$ppvod.vod_picurl}" title="{$ppvod.vod_name}" /></a>
+        <div class="channel-silder-intro">
+          <div class="channel-silder-title">
+            <h2><a target="_blank" href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">{$ppvod.vod_name}</a></h2>
+            <span>({$ppvod.vod_continu})</span></div>
+          <ul class="channel-silder-info fn-clear">
+            <li class="long">
+              <label>主演：</label>
+              <span>{$ppvod.vod_actor}</span></li>
+            <li>类型：<span>{$ppvod.vod_mcid|ff_mcat_url=$list_id}</span></li>
+            <li>导演：<span>{$ppvod.vod_director}</span></li>
+            <li>年份：<span>{$ppvod.vod_year}</span></li>
+            <li>时间：<span>{$ppvod.vod_addtime|date='Y-m-d',###}</span></li>
+          </ul>
+          <p class="channel-silder-desc"> 剧情：<span>{$ppvod.vod_content|msubstr=0,100}...　</span></p>
+          <a class="channel-silder-play" target="_blank" href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">马上观看</a></div>
+      </li>
+     </fflist>  
+    </ul>
+    <ul class="channel-silder-nav fn-clear">
+            <php>$vod_wdy_hdf_sl = ff_mysql_vod('cid:'.$list_id.';limit:9;field:vod_id,vod_cid,vod_mcid,vod_name,vod_pic,vod_actor,vod_director,vod_gold,vod_color,vod_title,vod_continu,vod_addtime,vod_area,vod_content,vod_year;order:vod_hits desc'); </php>     
+<fflist name="vod_wdy_hdf_sl" id="ppvod">
+      <li><a target="_blank" href="{$ppvod.vod_readurl}" ><img src="{$ppvod.vod_picurl}" alt=""></a></li>
+    </fflist> 
+    </ul>
+  </div>
+  <!-- // silderBox End -->
+</div>
+<!-- // channel-focus end -->
+<script type="text/javascript">
+	jQuery(".channel-silder").slide({ 
+		titCell:".channel-silder-nav li",
+		mainCell:".channel-silder-cnt",
+		delayTime:800,
+		triggerTime:0,
+		interTime:5000,
+		pnLoop:false,
+		autoPage:false,
+		autoPlay:true
+	});
+</script>
+<!-- // channel-focus end -->
+<div id="content" class="layout">
+  <div class="ui-box ui-qire fn-clear" id="channel-box">
+    <div class="qire-box">
+    
+     <volist name="catlist" id="vo" offset="0" length='7'>
+      <div class="channel-item">
+        <div class="ui-title fn-clear"><span><a target="_blank" href="{:UU('Home-vod/type',array('id'=>$list_id,'listdir'=>$list_dir,'mcid'=>$vo['m_cid'],'picm'=>1),true,false)}">更多</a></span>
+          <h2>{$vo.m_name|msubstr=0,2}</h2>
+        </div>
+        <div class="ui-cnt">
+          <ul class="img-list fn-clear">
+ <php>$qq182377860_new = ff_mysql_vod('cid:'.$list_id.';mcid:'.$vo['m_cid'].';field:vod_id,vod_cid,vod_name,vod_letters,vod_pic,vod_actor,vod_director,vod_title,vod_continu;limit:5;order:mcid_id desc');</php>
+         <fflist name="qq182377860_new" id="ppvod">
+         
+            <li><a class="play-img" href="{$ppvod.vod_readurl}"><img src="{$ppvod.vod_picurl}" alt="{$ppvod.vod_name}({$ppvod.list_name})" />
+              <label class="mask"></label>
+              <label class="text"><neq name="ppvod.vod_continu" value="0">更新至第{$ppvod.vod_continu}集<else/>{$ppvod.vod_title|default='全集'}</neq></label>
+              <label class="score"><eq name="ppvod.vod_gold" value="0">{$ppvod.vod_gold}<else/>{$ppvod.vod_gold}</eq></label>
+              </a>
+              <h5><a target="_blank" href="{$ppvod.vod_readurl}">{$ppvod.vod_name|msubstr=0,10}</a></h5>
+            </li>
+         </fflist>
+          </ul>
+          <!-- // img-list end -->
+          <ul class="sub-list fn-clear">
+<php>$vod_cid_gold =ff_mysql_vod('cid:'.$list_id.';mcid:'.$vo['m_cid'].';field:vod_id,vod_cid,vod_letters,vod_letters,vod_name,vod_gold;cache:ture;limit:8;order:vod_gold desc');</php>
+      <fflist name="vod_cid_gold" id="ppvod">
+		<li><a target="_blank" href="{$ppvod.vod_readurl}">{$ppvod.vod_name}</a></li>
+        </fflist> 
+          </ul>
+          <!-- // sub-list end -->
+        </div>
+      </div>
+      <!-- // channel-item end -->
+     </volist>   
+    
+    
+    </div>
+    <!-- // qire-box end -->
+    <div class="qire-bar">
+      <div class="ui-ranking">
+        <h3>最热排行榜</h3>
+        <ul class="ranking-list">
+          <php>$vod_weidy_top =ff_mysql_vod('cid:35;limit:15;day:7;order:vod_hits desc');</php>
+          <fflist name="vod_weidy_top" id="ppvod">
+          <li><span>{$ppvod.vod_hits}</span><em class="stress">{$i}.</em><a target="_blank" href="{$ppvod.vod_readurl}">{$ppvod.vod_name}[{$ppvod.list_name|msubstr=0,2}]</a></li>
+</fflist>
+        </ul>
+        <!-- // ranking-list end -->
+      </div>
+      <!-- // ui-ranking end -->
+      <div class="ui-sponsor250">
+     {:getadsurl('mov_250300_a1')}
+      </div>
+      <!-- // ui-sponsor250 end -->
+      <div class="ui-ranking">
+        <h3>好评排行榜</h3>
+        <ul class="ranking-list">
+             <php>$vod_weidy_wj =ff_mysql_vod('cid:35;limit:15;order:vod_up desc');</php>
+         <fflist name="vod_weidy_wj" id="ppvod">
+          <li><span>{$ppvod.vod_hits}</span><em class="stress">{$i}.</em><a target="_blank" href="{$ppvod.vod_readurl}">{$ppvod.vod_name}[{$ppvod.list_name|msubstr=0,2}]</a></li>
+</fflist>
+        </ul>
+        <!-- // ranking-list end -->
+      </div>
+      <!-- // ui-ranking end -->
+      <div class="ui-sponsor250">
+      {:getadsurl('mov_250300_a2')}
+      </div>
+      <!-- // ui-sponsor250 end -->
+    </div>
+    <!-- // qire-bar end -->
+  </div>
+  <!-- // maxBox End -->
+</div>
+<!-- // wrap End -->
+<!-- // content end -->
+<include file="pp:footer" />
+</body>
+</html>

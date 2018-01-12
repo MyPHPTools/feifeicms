@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>影音先锋未安装提示</TITLE>
+
+<SCRIPT>
+
+function preloadedImages() 
+
+{ 
+  
+var imgname=new Array();
+  var img = new Array();
+
+  imgname[0]="images/xfan_1.gif";  
+  imgname[1]="images/xfan_2.gif";  
+
+
+for (i=0;i<=imgname.length-1;i++)
+  {
+      img[i] = new Image();
+      img[i].src = imgname[i];
+  }
+
+}
+
+
+</SCRIPT>
+
+<BODY style="MARGIN: 0px" onload=preloadedImages();>
+<TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" align=center height="100%">
+<TBODY>
+
+<TR>
+
+<TD style="BACKGROUND-IMAGE: url(img/xfpicture.jpg); BACKGROUND-COLOR: #000000; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: center 50%; HEIGHT: 400px" align=middle>
+<DIV 
+      style="BACKGROUND-IMAGE: url(img/xfan_1.gif); MARGIN-TOP: 120px; WIDTH: 170px; HEIGHT: 54px; CURSOR: pointer" 
+      onmousemove="this.style.backgroundImage='url(img/xfan_2.gif)'" 
+      onmouseout="this.style.backgroundImage='url(img/xfan_1.gif)'" 
+      onclick="location.href='http://down.xfplay.com/xfplay.exe'">
+</DIV>
+</TD>
+
+</TR>
+
+<TR>
+    <TD style="BACKGROUND-COLOR: #000000; WIDTH: 100%; HEIGHT: 121px"></TD>
+</TR>
+
+</TBODY>
+</TABLE>
+</BODY>
+</HTML>

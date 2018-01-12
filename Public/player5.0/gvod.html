@@ -1,0 +1,13 @@
+<style type="text/css">body {background-color: #000000;}</style>
+<script src="http://js.getgvod.com/player/gvod.js" type="text/javascript" charset="gbk"></script>
+<script language="javascript">
+var gvod = gvod_player();
+gvod.height = parent.Player.Height;
+gvod.width = parent.Player.Width;
+gvod.stickPage = parent.Player.Buffer;
+gvod.nextPage = parent.Player.NextWebPage;
+gvod.nextUrl = parent.Player.NextUrl;
+gvod.installPage = '';
+gvod.title = parent.parent.Player.VodName;
+gvod.play(parent.Player.Url);
+</script>

@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$sitename}-留言本</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$sitename}求片留言本，本站管理员将在第一时间回复与处理你的回复！">
+<meta content="all" name="robots" />
+<link href="/static/css/guest/style.css" type="text/css" rel="stylesheet">
+<script language="javascript">var Root='{$root}';var Sid='{$sid}';var Cid='{$list_id}';<if condition="$sid eq 1">var Id='{$vod_id}';<else />var Id='{$news_id}';</if></script>
+<script language="javascript" src="__PUBLIC__/jquery/jquery-1.7.2.min.js" charset="utf-8"></script>
+<!--ff.留言本.表单验证 -->
+
+<script language="javascript">
+var reloadcode = function(){
+	$('#safecode').attr('src','{$root}index.php?s=Vcode-Index-time='+new Date());
+}
+$(document).ready(function(){
+	$('#gb_content').focus(function(){
+		if($('#gb_content').val() == '请留下您的宝贵意见，最多200个字。'){
+			$('#gb_content').val('');
+		}
+	});
+	$('#gb_content').blur(function(){
+		if($('#gb_content').val() == ''){
+			$('#gb_content').val('请留下您的宝贵意见，最多200个字。');
+		}
+	});	
+	$('#gb_vcode').focus(function(){
+		$('#gb_vcode_html').html('<a href="javascript:reloadcode()"><img src="{$root}index.php?s=Vcode-Index" alt="看不清楚换一张" name="safecode" border="0" align="absbottom" id="safecode"></a>');
+	});
+	$("#guestbook").submit( function () {
+		if($('#gb_content').val().length>200){
+			$('#gb_tips').html('您输入的留言信息过长，请删减一些！');
+  			return false;
+		}
+		if($('#gb_content').val() == '请留下您的宝贵意见，最多200个字。'){
+			$('#gb_content').select();
+			$('#gb_tips').html('请输入留言信息！');
+  			return false;
+		}
+		if($('#gb_vcode').val() == ''){
+			$('#gb_tips').html('请输入验证码！');
+			return false;
+		}		
+	});
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    
+    // back-to-top
+    var $back = $("<div id='back-to-top'><a href='javascript:void(0);'>Back to Top</a></div>");
+    $back.appendTo(".wrap");
+
+    $(window).scroll(function(){
+        if ($(window).scrollTop()>100){
+            $("#back-to-top").fadeIn(100);
+        }else{
+            $("#back-to-top").fadeOut(100);
+        }
+    });	
+    $("#back-to-top").click(function(){
+        $('body,html').animate({scrollTop:0},100);
+        return false;
+    });
+            
+    $(".ui-input").focus(function(){
+        $(this).parent().addClass("ui-input-parent");
+    }).hover(function(){
+        $(this).parent().addClass("ui-input-parent-hover");
+    },function(){
+        $(this).parent().removeClass("ui-input-parent-hover");
+    });
+    $(".ui-input").blur(function(){
+        $(this).parent().removeClass("ui-input-parent");
+    });	
+    
+    // #gb_types
+    $("#gb_types li").bind('click',function(e){									
+        $("#gb_types li").each(function(){
+            $(this).removeClass('selected');
+        });
+        $(this).addClass('selected');
+        $("#gb_cid").val($(this).attr('val'));
+    });
+
+});
+</script>
+</head>
+<body>
+
+
+<!-- // Header Start -->
+<div class="header">
+	<div class="head-bar fn-clear">
+		<div class="logo fn-left">
+			<a href="/"><img src="/static/css/guest/logo.gif" alt="" /></a>
+		</div>
+		<!-- // Logo End -->
+
+		<div class="gb-logo fn-left">
+			<a href="/"><img src="/static/css/guest/gblogo.gif" alt="" /></a>
+		</div>
+		<!-- // Logo End -->
+			
+		<div class="top-bar fn-right">
+			<a href="/">网站首页</a>
+			<a href="/FAQ/default.htm" target="_blank">常见问题</a>
+		</div>
+		<!-- // top-bar End -->
+		
+		
+		<!-- // search End -->
+	</div>
+<!--
+<div style="	width: 100%;border-top: 1px solid #f1e031;border-bottom: 1px solid #f1e031;background: #F5F5DC;margin-top:0px;	border-left: 1px solid #f1e031;border-right: 1px solid #f1e031;clear:both;width:938px;padding:10px;text-align:center;color:#e12160;margin:0px auto 0px">
+有同学反映新安装的百度影音播放黑屏，现查明是百度影音的版本问题，出现黑屏的同学可去<a href="http://player.baidu.com">官网下载</a>最新的版本，也可以等明天我们发布新版本再下载
+</div>
+-->
+</div>	
+<!-- // Header End -->
+
+
+
+
+<div class="wrap">
+	<div class="container fn-clear">
+		<div class="ui-gbook fn-left">
+			<div class="ui-page ui-page-fixed">{$gb_pages}</div>
+			<!-- // ui-page End -->
+	
+    <volist name="gb_list" id="ppvod">		
+	<div class="ui-gb-item fn-clear">
+	<div class="ui-gb-num">
+		<span class="gb-number">{$ppvod.gb_floor}</span>条留言
+	</div>
+	<!-- // ui-gb-num End -->
+	
+	<div class="ui-gb-box ui-gb-cnt">
+		<div class="ui-gb-cnt-min">
+			<div class="ui-title">
+				<span>{$ppvod.gb_addtime|date='Y-m-d H:i:s',###}</span>
+				<h5>{$ppvod.user_name}</h5>						
+			</div>
+			<div class="ui-text">
+			{$ppvod.gb_content|htmlspecialchars|remove_xss}			
+			</div>
+					</div>	
+	</div>
+	<!-- // ui-gb-cnt End -->
+	<notempty name="ppvod.gb_intro">
+	<div class="ui-gb-box ui-gb-reply">
+		<div class="ui-gb-cnt-min">
+			<div class="ui-title">
+				<h5>管理员回复</h5>						
+			</div>
+			<div class="ui-text">{$ppvod.gb_intro}</div>
+		</div>	
+	</div>
+	<!-- // ui-gb-reply End -->
+</notempty>
+</div>
+</volist>
+
+<!-- // ui-gb-item End -->			
+<if condition="$gb_count gt C('user_gbnum')"><div class="ui-page">{$gb_pages}</div></if>
+			<!-- // ui-page End -->
+		</div>
+		<!-- // ui-gbook End -->
+
+		
+		<div class="ui-bar fn-right">
+			<div class="ui-form">
+				<form action="{$root}index.php?s=Gb-Insert" method="post" name="guestbook" id="guestbook">
+                <input name="gb_cid" type="hidden" value="{.id}" />
+					<div class="ui-form-title">我要留言</div>
+					<div class="ui-form-item">
+						<label class="ui-label">请输入您的昵称：</label>
+						<input type="text" name="user_name" id="sname" class="ui-input" value=""/>
+					</div>
+					<div class="ui-form-item ui-form-type">
+						<label class="ui-label">选择类型：</label>
+						<ul id="gb_types">	
+							<li val="11">影片报错</li>
+							<li val="12">访问故障</li>
+							<li val="1">网站建议</li>
+							<li val="2">其他留言</li>	
+							<input name="gb_cid" type="hidden" id="gb_cid" value="0"/>
+						</ul>
+					</div>
+					<div class="ui-form-item ui-form-type-msg">
+						<p>请选择留言类型！</p>
+					</div>
+					<div class="ui-form-item">
+						<label class="ui-label">请输入您的留言内容：</label>
+						<textarea name="gb_content" id="gb_content" rows="6" cols="50" class="ui-input ui-textarea">{$gb_content|default='请留下您的宝贵意见，最多200个字。'}</textarea>
+					</div>
+					 				<div class="ui-form-item">
+						<input  class="ui-button" type="submit" class="ui-button" value="发送留言" id="gb_button"  />
+            <if condition="C('user_vcode') eq 1"><div class="vcodde"><div class="vcode">验证码：</div><input name="gb_code" type="text" class="ui-code" id="gb_vcode"/>&nbsp;<span id="gb_vcode_html"></span></div></if>
+            <label id="gb_tips"></label>
+
+					</div>
+				</form>	
+			</div>
+			<!-- // ui-bar End -->	
+			
+			<div class="ui-message">
+				<p>你可以在顶部的搜索框输入你留言时的用户名就可以看到回复拉！</p>
+				<p>百度影音播放不了的情况下，留言时请留下您的QQ，以便我们联系您；</p>
+				<p>版权投诉请附带版权所属证明发至邮箱<img src="/static/css/guest/email.gif"/>，请不要在此留言，我们收到邮件后会立刻处理；</p>
+			</div>
+			<!-- // ui-message End -->		
+		</div>
+		<!-- // ui-bar End -->
+	</div>
+	<!-- // container End -->
+	
+	<div class="ui-copyright">
+		Copyright &copy; 2007-2012 {$sitename}留言本	</div>
+</div>	
+<!-- // wrap End -->
+</body>
+</html>

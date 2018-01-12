@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<meta name="keywords" content="{$special_keywords|default='影视专题关键字'}">
+<meta name="description" content="{$special_description|default='影视专题描述'}">
+<include file="Home:header" />
+</head>
+<body>
+<div class="wrap">
+    <include file="pp:header" />
+    <div class="top960">{:getadsurl('top960')}</div> 
+<div style="float:left">  
+    <div class="special box2">
+        <h3><div><a href="{$root}">首页</a></label> > <a href="{$url_special}">专题</a> > {$special_name}</div></h3>
+        <ul><a href="{$special_readurl}"><img src="{$special_logo}" alt="专题《{$special_name}》" /></a>
+        <h2><a href="{$special_readurl}">{$special_name}</a></h2><p class="content">{$special_content}</p>
+        </ul>
+    </div>
+    <div class="special box2">
+        <h3><div><a href="{$special_readurl}">详细视频</a></div></h3>
+        <ul class="special_l"><volist name="list_vod" id="ppvod">
+        <li>
+        <dt><span><a href="{$ppvod.vod_readurl}" class="title" target="_blank">{$ppvod.vod_name}</a></span><span><a href="{$ppvod.list_url}" target="_blank" class="listtitle">{$ppvod.list_name}</a></span><span>{$ppvod.vod_title}</span><span class="gold">{$ppvod.vod_gold}</span><span>({$ppvod.vod_golder}人评)</span></dt>
+        <dt>更新时间：<span>{$ppvod.vod_addtime|date='Y-m-d',###}</span>播放次数：<span>{$ppvod.vod_hits}</span>语言：<span>{$ppvod.vod_language}</span>导演：<span>{$ppvod.vod_director|ff_search_url}</span></dt>
+        <dt>主演：<span>{$ppvod.vod_actor|ff_search_url}</span></dt>
+        <dt>简介：<span class="intro">{$ppvod.vod_content|msubstr=0,120,'utf-8',true} <a href="{$ppvod.vod_readurl}" class="more">点击观看>></a></span></dt>
+        </li></volist></ul>
+    </div>
+</div>
+<div style="float:right;width:300px">
+    <div class="vodlist_r box">
+    	<div class="top"><h3><a href="{$url_special}">热门专题</a></h3></div>
+        <ul><php>$special_hits = ff_mysql_special('limit:10;order:special_hits desc');</php><volist name="special_hits" id="ppvod"><li><em>{$i}</em><a href="{$ppvod.special_readurl}">{$ppvod.special_name|msubstr=0,20}</a></li></volist></ul>        
+    </div>
+     <div class="vodlist_r box">
+    	<div class="top"><h3><a href="{$special_readurl}">详细资讯</a></h3></div>
+        <ul><volist name="list_news" id="ppvod"><li><em>{$i}</em><a href="{$ppvod.news_readurl}">{$ppvod.news_name|msubstr=0,20}</a></li></volist></ul>        
+    </div>   
+</div> 
+	<div class="blank"></div>{$special_hits_insert}
+    <include file="pp:footer" />  
+</div>
+</body>
+</html>

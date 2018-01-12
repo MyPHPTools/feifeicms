@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<php>
+$s_area=explode(',',C('play_area'));
+$s_language=explode(',',C('play_language'));
+$s_order=array('vod_addtime','vod_hits','vod_gold');
+$s_year=explode(',',C('play_year'));
+$s_lz=array('1','2');
+$s_letter=(range(A,Z));
+if($_GET[year]) $u_year="".$_GET[year];else $u_year=NULL;if($_GET[area]) $u_area="".$_GET[area];else $u_area=NULL;if($_GET[language]) $u_language="".$_GET[language];else $u_order=NULL;if($_GET[order]) $u_order="".$_GET[order];else $u_order=NULL;
+if($_GET[mcid]) $u_mcid="".$_GET['mcid'];else $u_mcid=NULL;if($_GET[letter]) $u_letter="".$_GET[letter];else $u_letter=NULL;if($_GET[lz]) $u_lz="".$_GET[lz];else $u_lz=NULL;if($_GET[picm]) $u_picm="".$_GET[picm];else $u_picm=NULL;
+</php>
+<title>最新{$list_name}-{$list_dir}{$list_name_big}{$list_name}-2011最新{$list_name}{$list_title}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="最新{$list_name}包含的影片有<volist name='vod_list' id='ppvod'>{$ppvod.vod_name|msubstr=0,10},</volist>完全免费在线观看！">
+<include file="system:js" />
+</head>
+<body>
+<include file="pp:header" />
+<!-- // header end -->
+<div id="content" class="layout">
+  <div class="ui-sponsor">
+{:getadsurl('list_960_01')}
+  </div>
+  <!-- // ui-sponsor end -->
+  <div class="bread-crumb-nav fn-clear">
+    <ul class="bread-crumbs">
+      <li class="home"><a href="{$root}">首页</a></li>
+      <li><a href="{$list_url}">{$list_name}</a></li>
+    </ul>
+    <!-- // bread-crumbs end -->
+  </div>
+  <!-- // bread-crumb-nav end -->
+<php>    if($_GET[order])
+    $s_order=$_GET[order]." DESC";
+    else
+    $s_order="addtime desc";  $vod_list=ff_mysql_vod('mcid:'.$_GET['mcid'].';cid:'.$list_id.';year:'.$_GET[year].';lz:'.$_GET[lz].';letter:'.$_GET[letter].';area:'.$_GET[area].';language:'.$_GET[language].';limit:20;page:true;order:vod_'.$s_order.';');$page = $vod_list[0]['page'];$pagetop = $vod_list[0]['pagetop'];</php>
+  <div class="ui-box filter-focus">
+    <div class="ui-title">
+      <h3>{$list_name}索引</h3>
+      <span><a href="{$list_url}"  class="conreset">重置条件</a></span>
+      <p class="conbread"></p>
+    </div>
+    <div class="ui-cnt">            
+      <div class="filter-list fn-clear">
+        <h5>类型：</h5>
+        <ul>
+          <li><a <php>if (!isset($_GET['mcid'])){</php> class="current"<php>}</php>  href="{:UU('Home-vod/type',array('id'=>$list_id,'lz'=>$u_lz,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}">全部</a></li>
+          <php>$mcat = D('Mcat')->list_cat($list_id);</php>
+         <volist name="mcat" id="cat_menu" offset="0" length='31'>
+          <li><a  <eq name="cat_menu.m_cid" value="$_GET['mcid']"> class="current"</eq>  href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$cat_menu['m_cid'],'lz'=>$u_lz,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}">{$cat_menu.m_name}</a></li>
+</volist>
+        </ul>
+      </div>
+    <if condition="$list_id eq 3">  
+       <div class="filter-list fn-clear">
+        <h5>状态：</h5>
+        <ul>
+       <li><a rel="nofollow" <php>if (!isset($_GET['lz'])){</php> class="current"<php>}</php> href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}">全部</a></li>
+<li><a rel="nofollow" href='{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>1,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}' <php> if($_GET[lz]=="1") echo "class='current'"; </php> >连载中</a></li>
+<li><a rel="nofollow" href='{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>2,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}' <php> if($_GET[lz]=="2") echo "class='current'"; </php> >已完结</a></li>          
+        </ul>
+      </div>
+    <elseif condition="$list_pid eq 2"/> 
+           <div class="filter-list fn-clear">
+        <h5>状态：</h5>
+        <ul>
+       <li><a rel="nofollow" <php>if (!isset($_GET['lz'])){</php> class="current"<php>}</php> href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}">全部</a></li>
+<li><a rel="nofollow" href='{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>1,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}' <php> if($_GET[lz]=="1") echo "class='current'"; </php> >连载中</a></li>
+<li><a rel="nofollow" href='{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>2,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}' <php> if($_GET[lz]=="2") echo "class='current'"; </php> >已完结</a></li>        
+        </ul>
+      </div> 
+          <elseif condition="$list_id eq 2"/> 
+           <div class="filter-list fn-clear">
+        <h5>状态：</h5>
+        <ul>
+       <li><a rel="nofollow" <php>if (!isset($_GET['lz'])){</php> class="current"<php>}</php> href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}">全部</a></li>
+<li><a rel="nofollow" href='{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>1,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}' <php> if($_GET[lz]=="1") echo "class='current'"; </php> >连载中</a></li>
+<li><a rel="nofollow" href='{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>2,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}' <php> if($_GET[lz]=="2") echo "class='current'"; </php> >已完结</a></li>        
+        </ul>
+      </div> 
+      
+       <elseif condition="$list_id eq 4"/>
+           <div class="filter-list fn-clear">
+        <h5>状态：</h5>
+        <ul>
+       <li><a rel="nofollow" <php>if (!isset($_GET['lz'])){</php> class="current"<php>}</php> href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}">全部</a></li>
+<li><a rel="nofollow" href='{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>1,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}' <php> if($_GET[lz]=="1") echo "class='current'"; </php> >连载中</a></li>
+<li><a rel="nofollow" href='{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>2,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}' <php> if($_GET[lz]=="2") echo "class='current'"; </php> >已完结</a></li>         
+        </ul>
+      </div> 
+      
+      <else />
+</if>
+
+            <div class="filter-list fn-clear">
+        <h5>地区：</h5>
+        <ul>
+       <li><a rel="nofollow" <php>if (!isset($_GET['area'])){</php> class="current"<php>}</php> href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>$u_lz,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order),true,false)}">全部</a></li> 
+     <volist name="s_area" id="area" offset="0" length='13'><li>
+     <a rel="nofollow" href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>$u_lz,'year'=>$u_year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($area)),true,false)}" <eq name="area" value="$_GET['area']">class="current"</eq>>{$area}</a></li></volist>  
+        </ul>
+      </div>
+  
+      
+      <div class="filter-list fn-clear">
+        <h5>年代：</h5>
+        <ul>
+        <li><a rel="nofollow" <php>if (!isset($_GET['year'])){</php> class="current"<php>}</php> href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>$u_lz,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}">全部</a></li>
+     <volist name="s_year" id="year" offset="0" length='16'>
+     <li><a rel="nofollow" href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>$u_lz,'year'=>$year,'letter'=>$u_letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}" <eq name="year" value="$_GET['year']">class="current"</eq>>{$year}</a></li>
+     </volist>
+        </ul>
+      </div>
+      <div class="filter-list filter-list-letter fn-clear">
+        <h5>字母：</h5>
+        <ul>
+        <li><a rel="nofollow" <php>if (!isset($_GET['letter'])){</php> class="current"<php>}</php> href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>$u_lz,'year'=>$u_year,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}">全部</a></li>
+     <volist name="s_letter" id="letter">
+     <li>
+     <a rel="nofollow" href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>$u_lz,'year'=>$u_year,'letter'=>$letter,'order'=>$u_order,'area'=>urlencode($u_area)),true,false)}" <eq name="letter" value="$_GET['letter']">class="current"</eq>>{$letter}</a></li></volist>
+     <li>
+     <a rel="nofollow" href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'lz'=>$u_lz,'year'=>$u_year,'letter'=>'0,1,2,3,4,5,6,7,8,9','order'=>$u_order,'area'=>urlencode($u_area)),true,false)}" <eq name="u_letter" value="0,1,2,3,4,5,6,7,8,9">class="current"</eq> >0-9</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- // filter-item end -->
+  </div>
+  <!-- // filter-focus end -->
+  <!-- filter-focus end -->
+  <div class="ui-box ui-qire fn-clear" id="list-focus">
+    <div class="qire-box">
+      <div class="ui-bar fn-clear">
+        <ul class="view-mode">
+          <li id="view-grid"><?php echo "<a href=".$root."vod-type-id-".$list_id.$u_mcid.$u_area.$u_year.$u_language.$u_letter; ?>.html data=t-1 <?php if($_GET[t]=="1") echo "class='current'"; ?><?php if($_GET[t]=="") echo "class='current'"; ?>>海报模式</a></li>  
+          <li id="view-list"><?php echo "<a href=".$root."vod-type-id-".$list_id.$u_mcid.$u_area.$u_year.$u_language.$u_letter; ?>.html data=t-2 <?php if($_GET[t]=="2") {echo "class='current'";}else{echo "class=''";} ?>>列表模式</a></li>
+        </ul>
+        <!-- view-mode end -->
+        <div class="view-filter">
+<a href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'letter'=>$u_letter,'lz'=>$u_lz,'year'=>$u_year,'order'=>'addtime','area'=>urlencode($u_area)),true,false)}" <php> if($_GET[order]=="addtime") echo "class='current order'"; </php><php> if($_GET[order]=="") echo "class='current order'"; </php>><span>按时间</span></a><em>|</em>
+<a href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'letter'=>$u_letter,'lz'=>$u_lz,'year'=>$u_year,'order'=>'hits','area'=>urlencode($u_area)),true,false)}" <php> if($_GET[order]=="hits") {echo "class='current order'";}else{echo "class='order'";} </php>><span>按人气</span></a><em>|</em>
+<a href="{:UU('Home-vod/type',array('id'=>$list_id,'mcid'=>$u_mcid,'letter'=>$u_letter,'lz'=>$u_lz,'year'=>$u_year,'order'=>'gold','area'=>urlencode($u_area)),true,false)}" <php> if($_GET[order]=="gold") {echo "class='current order'";}else{echo "class='order'";} </php>><span>按评分</span></a></div>
+        <!-- view-filter end -->
+        <div class="ui-pages short-page  fn-right"  >{$pagetop} </div>
+      </div>
+      <!-- // ui-bar end -->
+ <ul class="<?php if($_GET[t]=="1") echo "grid-mode"; ?><?php if($_GET[t]=="") echo "grid-mode"; ?><?php if($_GET[t]=="2") echo "list-mode"; ?> show-list fn-clear" id="contents">
+       <neq name="vod_list.0.count" value="0">
+     <volist name="vod_list" id="ppvod">
+        <li><a class="play-img" target="_blank" href="{$ppvod.vod_readurl}"><img src="{$ppvod.vod_picurl}" alt="{$ppvod.vod_name}" />
+          <label class="score">{$ppvod.vod_gold}</label>
+          </a>
+          <div class="play-txt">
+            <h5><a target="_blank" href="{$ppvod.vod_readurl}">{$ppvod.vod_name}</a></h5>
+            <p class="actor"><em>主演:</em>{$ppvod.vod_actor|ff_search_url}</p>
+            <p class="type fn-left"><em>类型：</em>{$ppvod.vod_mcid|ff_mcat_url=$list_id}</p>
+            <p class="type"><em class="long">更新时间：</em>{$ppvod.vod_addtime|date='Y-m-d',###}</p>
+            <p class="plot"><em>剧情：</em>{$ppvod.vod_content|msubstr=0,100,'utf-8',true}…</p>
+            <p class="state"><em>状态：</em><neq name="ppvod.vod_continu" value="0"><a target="_blank" href="{$ppvod.vod_playurl}" class="goplay">第{$ppvod.vod_continu}集</a><else/> <a target="_blank" href="{$ppvod.vod_playurl}" class="goplay">{$ppvod.vod_title|default='完结'}</a></neq>&nbsp; </p>
+            <p class="more-desc"><a class="more" target="_blank" href="{$ppvod.vod_readurl}">详细</a></p>
+          </div>
+        </li>
+        
+      </volist>
+    <else/>
+       	 <ul>该分类暂无数据！</ul>
+      </neq> 
+      </ul>
+      <!-- // show-list End -->
+      <div class="ui-bar list-page fn-clear">
+        <div class="ui-pages ui-page-big">{$page}</div>
+      </div>
+      <!-- // list-page End -->
+    </div>
+    <!-- // qire-box end -->
+    <div class="qire-bar">
+      <div class="ui-sponsor250">{:getadsurl('mov_250300_a1')}</div>
+      <!-- // ui-sponsor250 end -->
+<include file="list:right" />
+      <!-- // ui-ranking end -->
+      <div class="ui-sponsor250">
+       {:getadsurl('mov_250300_a2')}
+      </div>
+      <!-- // ui-sponsor250 end -->
+    </div>
+  </div>
+  <!-- // ui-box#list-focus end -->
+  <div class="ui-sponsor">
+   {:getadsurl('mov_250300_a3')}
+  </div>
+  <!-- // ui-sponsor end -->
+</div>
+<!-- // content end -->
+<!-- // footer start -->
+<include file="pp:footer" />
+<script type="text/javascript"> 
+  var parms = new Array();
+  $('.view-mode li a').click(function (e){
+                e.preventDefault();
+               var constr='';
+               var curobj=$(this);
+                var url = curobj.attr('href');
+                curobj.parent().siblings().children("a").removeClass('current');
+                curobj.addClass('current');
+       var url='';
+   if(parms!=undefined&&parms!=null){
+			var curdata=$(this).attr('data').split('-');
+			parms[curdata[0]]=curdata[1];
+			if(curdata[1]=='1'){
+				$("#contents").removeClass('vod-show-id-mode');
+				$("#contents").addClass('grid-mode');
+			}else{
+				$("#contents").addClass('vod-show-id-mode');
+				$("#contents").removeClass('grid-mode');
+		}
+ 
+    }
+  });
+</script>
+</body>
+</html>

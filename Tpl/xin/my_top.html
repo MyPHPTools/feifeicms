@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>电视剧排行榜 电影排行榜 热门综艺 动漫排行榜 微电影排行 热卖榜 - {$sitename}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="<notempty name="list_description">{$list_description}<else/>{$description}</notempty>">
+<include file="system:js" />
+</head>
+<body>
+<include file="pp:header" />
+<div id="content" class="layout">
+  <div class="bread-crumb-nav fn-clear">
+    <ul class="bread-crumbs">
+      <li class="home"><a href="{$root}">首页</a></li>
+      <li>所有点击排行榜</li>
+    </ul>
+    <!-- // bread-crumbs end -->
+  </div>
+  <!-- // bread-crumb-nav end -->
+  <div class="ui-box ui-qire fn-clear" id="qire-top">
+    <div class="qire-bar top-catalog">
+      <h2 class="current"><a href="{$root}">排行榜首页</a></h2>
+      <ul>
+        <li ><a href="{:ff_mytpl_url('my_tv_top.html')}">电视剧</a></li>
+        <li ><a href="{:ff_mytpl_url('my_mov_top.html')}">电影</a></li>
+        <li ><a href="{:ff_mytpl_url('my_comic_top.html')}">经典动漫</a></li>
+        <li ><a href="{:ff_mytpl_url('my_variety_top.html')}">综艺娱乐</a></li>
+        <li ><a href="{:ff_mytpl_url('my_weidy_top.html')}">微电影</a></li>
+      </ul>
+    </div>
+    <div class="qire-box top-content">
+      <div class="top-item-box">
+        <div class="ui-title fn-clear"><span><a href="{:ff_mytpl_url('my_tv_top.html')}">更多</a></span>
+          <h3><a href="{:ff_mytpl_url('my_tv_top.html')}">电视剧排行榜</a></h3>
+        </div>
+        <div class="ui-cnt fn-clear">
+          <div class="top-item">
+            <h5>总评分榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_tv = ff_mysql_vod('cid:2;limit:10;order:vod_gold desc'); </php>
+            <fflist name="vod_hot_tv" id="ppvod">
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="score"><eq name="ppvod.vod_gold" value="0">{$ppvod.vod_gold}
+                      <else/>
+                      {$ppvod.vod_gold}</eq></span></a></li>
+
+</fflist>
+            </ul>
+          </div>
+          <!-- // top-item end -->
+          <div class="top-item">
+            <h5>周排行榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_tv_z = ff_mysql_vod('cid:2;limit:10;day:7;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_tv_z" id="ppvod">
+            
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="hits">{$ppvod.vod_hits}</span></a></li>
+  </fflist>          
+            </ul>
+          </div>
+          <!-- // top-item end -->
+          <div class="top-item">
+            <h5>月排行榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_tv_y = ff_mysql_vod('cid:2;limit:10;day:30;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_tv_y" id="ppvod">
+            
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="hits">{$ppvod.vod_hits}</span></a></li>
+  </fflist>
+            </ul>
+          </div>
+          <!-- // top-item end -->
+        </div>
+      </div>
+      <!-- // top-item-box end -->
+      <div class="top-item-box">
+        <div class="ui-title fn-clear"><span><a href="{:ff_mytpl_url('my_mov_top.html')}">更多</a></span>
+          <h3><a href="{:ff_mytpl_url('my_mov_top.html')}">电影排行榜</a></h3>
+        </div>
+        <div class="ui-cnt fn-clear">
+          <div class="top-item">
+            <h5>总评分榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_dy = ff_mysql_vod('cid:1;limit:10;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_dy" id="ppvod">
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="score"><eq name="ppvod.vod_gold" value="0">{$ppvod.vod_gold}
+                      <else/>
+                      {$ppvod.vod_gold}</eq></span></a></li>
+
+</fflist>
+            </ul>
+          </div>
+          <!-- // top-item end -->
+          <div class="top-item">
+            <h5>周排行榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_dy_z = ff_mysql_vod('cid:1;limit:10;day:7;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_dy_z" id="ppvod">
+            
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="hits">{$ppvod.vod_hits}</span></a></li>
+  </fflist> 
+            </ul>
+          </div>
+          <!-- // top-item end -->
+          <div class="top-item">
+            <h5>月排行榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_dy_y = ff_mysql_vod('cid:1;limit:10;day:30;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_dy_y" id="ppvod">
+            
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="hits">{$ppvod.vod_hits}</span></a></li>
+  </fflist>
+            </ul>
+          </div>
+          <!-- // top-item end -->
+        </div>
+      </div>
+      <!-- // top-item-box end -->
+      <div class="top-item-box">
+        <div class="ui-title fn-clear"><span><a href="{:ff_mytpl_url('my_comic_top.html')}">更多</a></span>
+          <h3><a href="{:ff_mytpl_url('my_comic_top.html')}">经典动漫排行榜</a></h3>
+        </div>
+        <div class="ui-cnt fn-clear">
+          <div class="top-item">
+            <h5>总评分榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_dm = ff_mysql_vod('cid:3;limit:10;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_dm" id="ppvod">
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="score"><eq name="ppvod.vod_gold" value="0">{$ppvod.vod_gold}
+                      <else/>
+                      {$ppvod.vod_gold}</eq></span></a></li>
+
+</fflist>
+            </ul>
+          </div>
+          <!-- // top-item end -->
+          <div class="top-item">
+            <h5>周排行榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_dm_z = ff_mysql_vod('cid:3;limit:10;day:7;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_dm_z" id="ppvod">
+            
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="hits">{$ppvod.vod_hits}</span></a></li>
+  </fflist> 
+            </ul>
+          </div>
+          <!-- // top-item end -->
+          <div class="top-item">
+            <h5>月排行榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_dm_y = ff_mysql_vod('cid:3;limit:10;day:30;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_dm_y" id="ppvod">
+            
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="hits">{$ppvod.vod_hits}</span></a></li>
+  </fflist>
+            </ul>
+          </div>
+          <!-- // top-item end -->
+        </div>
+      </div>
+      <!-- // top-item-box end -->
+      <div class="top-item-box">
+        <div class="ui-title fn-clear"><span><a href="{:ff_mytpl_url('my_variety_top.html')}">更多</a></span>
+          <h3><a href="{:ff_mytpl_url('my_variety_top.html')}">综艺娱乐排行榜</a></h3>
+        </div>
+        <div class="ui-cnt fn-clear">
+          <div class="top-item">
+            <h5>总评分榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_zy = ff_mysql_vod('cid:4;limit:10;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_zy" id="ppvod">
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="score"><eq name="ppvod.vod_gold" value="0">{$ppvod.vod_gold}
+                      <else/>
+                      {$ppvod.vod_gold}</eq></span></a></li>
+
+</fflist>
+            </ul>
+          </div>
+          <!-- // top-item end -->
+          <div class="top-item">
+            <h5>周排行榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_zy_z = ff_mysql_vod('cid:4;limit:10;day:7;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_zy_z" id="ppvod">
+            
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="hits">{$ppvod.vod_hits}</span></a></li>
+  </fflist> 
+            </ul>
+          </div>
+          <!-- // top-item end -->
+          <div class="top-item">
+            <h5>月排行榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_zy_y = ff_mysql_vod('cid:4;limit:10;day:30;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_zy_y" id="ppvod">
+            
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="hits">{$ppvod.vod_hits}</span></a></li>
+  </fflist>
+            </ul>
+          </div>
+          <!-- // top-item end -->
+        </div>
+      </div>
+      <!-- // top-item-box end -->
+      <div class="top-item-box">
+        <div class="ui-title fn-clear"><span><a href="{:ff_mytpl_url('my_weidy_top.html')}">更多</a></span>
+          <h3><a href="{:ff_mytpl_url('my_weidy_top.html')}">微电影排行榜</a></h3>
+        </div>
+        <div class="ui-cnt fn-clear">
+          <div class="top-item">
+            <h5>总评分榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_wdy = ff_mysql_vod('cid:35;limit:10;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_wdy" id="ppvod">
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="score"><eq name="ppvod.vod_gold" value="0">{$ppvod.vod_gold}
+                      <else/>
+                      {$ppvod.vod_gold}</eq></span></a></li>
+
+</fflist>
+            </ul>
+          </div>
+          <!-- // top-item end -->
+          <div class="top-item">
+            <h5>周排行榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_wdy_z = ff_mysql_vod('cid:35;limit:10;day:7;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_wdy_z" id="ppvod">
+            
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="hits">{$ppvod.vod_hits}</span></a></li>
+  </fflist> 
+            </ul>
+          </div>
+          <!-- // top-item end -->
+          <div class="top-item">
+            <h5>月排行榜</h5>
+            <ul class="top-list fn-clear">
+            <php>$vod_hot_wdy_y = ff_mysql_vod('cid:35;limit:10;day:30;order:vod_hits desc'); </php>
+            <fflist name="vod_hot_wdy_y" id="ppvod">
+            
+              <li><a href="{$ppvod.vod_readurl}"><gt name="i" value="3"><span class="num">{$i}.</span><else/><span class="num stress">{$i}.</span></gt><span class="tit">{$ppvod.vod_name|getcolor=$ppvod['vod_color']|msubstr=0,10}({$ppvod.list_name|msubstr=0,2})</span><span class="hits">{$ppvod.vod_hits}</span></a></li>
+  </fflist>
+            </ul>
+          </div>
+          <!-- // top-item end -->
+        </div>
+      </div>
+      <!-- // top-item-box end -->
+    </div>
+  </div>
+  <!-- // ui-box.ui-qire end -->
+  <include file="pp:foot_mcid" />
+</div>
+<!-- // content end -->
+<include file="pp:footer" />
+</body>
+</html>

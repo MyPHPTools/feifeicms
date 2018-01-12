@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网站地图 - {$sitename}</title>
+<meta name="keywords" content="<notempty name="list_keywords">{$list_keywords}<else/>最新{$list_name},{$keywords}</notempty>">
+<meta name="description" content="<notempty name="list_description">{$list_description}<else/>{$description}</notempty>">
+<include file="system:js" />
+</head>
+<body>
+<include file="pp:header" />
+<!-- // header end -->
+<div id="content" class="layout">
+  <div class="bread-crumb-nav fn-clear">
+    <ul class="bread-crumbs">
+      <li class="home"><a href="{$root}">首页</a></li>
+      <li>网站地图</li>
+    </ul>
+    <!-- // bread-crumbs end -->
+  </div>
+  <!-- // bread-crumb-nav end -->
+  <div class="ui-box sitemap-item">
+    <h2><a href="{:getlistname(2,'list_url')}">电视剧</a></h2>
+    <dl class="sitemap-list fn-clear">
+      <dt>地区</dt>
+      <dd>
+        <ul>
+            <fflist name="array_listtvid" id="ppvodson">
+			<li><a href="{:getlistname($ppvodson['list_id'],'list_url')}">{$ppvodson.list_name}</a></li>
+            </fflist>
+        </ul>
+      </dd>
+    </dl>
+    <dl class="sitemap-list fn-clear">
+      <dt>类型</dt>
+      <dd>
+        <ul>
+       <volist name="cattvlist" id="vo"><li><a target="_blank" href="{:UU('Home-vod/type',array('id'=>2,'mcid'=>$vo['m_cid']),true,false)}" title="{$vo.m_name}{:getlistname(2,'list_name')}">{$vo.m_name|msubstr=0,2}</a></li></volist>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+  <!-- // sitemap-item end-->
+  <div class="ui-box sitemap-item">
+    <h2><a href="{:getlistname(1,'list_url')}">电影</a></h2>
+    <dl class="sitemap-list fn-clear">
+      <dt>分类</dt>
+      <dd>
+        <ul>
+            <fflist name="array_listmovid" id="ppvodson">
+			<li><a href="{:getlistname($ppvodson['list_id'],'list_url')}">{$ppvodson.list_name}</a></li>
+            </fflist>
+        </ul>
+      </dd>
+    </dl>
+    <dl class="sitemap-list fn-clear">
+      <dt>类型</dt>
+      <dd>
+        <ul>
+     <volist name="catmovlist" id="vo"><li><a target="_blank" href="{:UU('Home-vod/type',array('id'=>1,'mcid'=>$vo['m_cid']),true,false)}" title="{$vo.m_name}{:getlistname(1,'list_name')}">{$vo.m_name|msubstr=0,2}</a></li></volist>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+  <!-- // sitemap-item end-->
+  <div class="ui-box sitemap-item">
+    <h2><a href="{:getlistname(3,'list_url')}">经典动漫</a></h2>
+    <dl class="sitemap-list fn-clear">
+      <dt>类型</dt>
+      <dd>
+        <ul>
+            <volist name="catdmlist" id="vo"><li><a target="_blank" href="{:UU('Home-vod/type',array('id'=>3,'mcid'=>$vo['m_cid']),true,false)}" title="{$vo.m_name}{:getlistname(3,'list_name')}">{$vo.m_name|msubstr=0,2}</a></li></volist>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+  <!-- // sitemap-item end-->
+  <div class="ui-box sitemap-item">
+    <h2><a href="{:getlistname(4,'list_url')}">综艺娱乐</a></h2>
+    <dl class="sitemap-list fn-clear">
+      <dt>类型</dt>
+      <dd>
+        <ul>
+         <volist name="catzylist" id="vo"><li><a target="_blank" href="{:UU('Home-vod/type',array('id'=>4,'mcid'=>$vo['m_cid']),true,false)}" title="{$vo.m_name}{:getlistname(4,'list_name')}">{$vo.m_name|msubstr=0,2}</a></li></volist>	
+        </ul>
+      </dd>
+    </dl>
+  </div>
+   <!-- // sitemap-item end-->
+  <div class="ui-box sitemap-item">
+    <h2><a href="{:getlistname(35,'list_url')}">微电影</a></h2>
+    <dl class="sitemap-list fn-clear">
+      <dt>类型</dt>
+      <dd>
+        <ul>
+            <volist name="catweilist" id="vo"><li><a target="_blank" href="{:UU('Home-vod/type',array('id'=>35,'mcid'=>$vo['m_cid']),true,false)}" title="{$vo.m_name}{:getlistname(35,'list_name')}">{$vo.m_name|msubstr=0,2}</a></li></volist>	
+        </ul>
+      </dd>
+    </dl>
+  </div>
+ 
+</div>
+<!-- // content end -->
+<include file="pp:footer" />
+</body>
+</html>

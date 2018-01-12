@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最新电影-{$sitename}</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<include file="Home:header" />
+</head>
+<body>
+<php>$vod_news = ff_mysql_vod('limit:96;order:vod_addtime desc');</php>
+<div class="wrap">
+	<include file="pp:header" />
+    <div class="top960">{:getadsurl('top960')}</div>
+     <div class="box">
+       	<div class="top"><h3><span>今天到目前已更新<strong>{:getcount(999)}</strong>部</span><a href="{:ff_mytpl_url('my_new.html')}">最新更新节目</a></h3></div>
+        <ul class="hang1"><volist name="vod_news" id="ppvod" mod="4">
+        <li><b>{$ppvod.vod_addtime|getcolordate='m-d',###}</b><a href="{$ppvod.vod_readurl}" title="{$ppvod.vod_name}">{$ppvod.vod_name|msubstr=0,12|getcolor=$ppvod['vod_color']}</a></li>
+    	<eq name="mod" value="0"></ul><in name="i" value="8,16,24,32,40,48,56,64,72,80,88,96"><ul class="hang1"><else /><ul class="hang2"></in></eq>
+    	</volist></ul>
+    </div>
+    <include file="Home:footer" />      
+</div>
+</body>
+</html>

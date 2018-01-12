@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}">
+<include file="Home:header" />
+</head>
+<body>
+<php>$cidarr=getlistarr($list_id);</php>
+<php>$gold_desc = ff_mysql_news('limit:15;order:news_up desc');</php>
+<div class="wrap">
+<include file="pp:header" />
+<div class="top960">{:getadsurl('top960')}</div> 
+<div class="vodlist_l box">
+    <volist name="cidarr" id="ppcid" key="k">
+    <php>$news_list = ff_mysql_news('cid:'.$ppcid.';num:10;order:news_addtime desc');</php>
+    <notempty name="news_list">
+    <div class="top"><h3><a href="{$ppcid|getlistname='list_url'}">{$ppcid|getlistname}</a> > 资讯列表</h3></div>
+    <ul class="newslist">
+    <volist name="news_list" id="ppvod">
+    <li><span>{$ppvod.news_addtime|date='Y-m-d',###}</span><a href="{$ppvod.news_readurl}">{$ppvod.news_name}</a></li>
+    </volist>
+    </ul>
+    </notempty>
+    </volist>
+</div>
+<div class="vodlist_r box">
+    <div class="top">
+        <h3>推荐阅读</h3>
+    </div>     
+    <ul>
+    <volist name="gold_desc" id="ppvod"><li><em>{$i}</em><a href="{$ppvod.news_readurl}">{$ppvod.news_name|msubstr=0,20,'utf-8',true}</a></li></volist></ul>        
+</div>     
+<div class="blank"></div>
+<include file="pp:footer" />  
+</div>
+</body>
+</html>

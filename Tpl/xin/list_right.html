@@ -1,0 +1,21 @@
+<div class="ui-ranking">
+        <h3>{$list_name}评分榜</h3>
+        <ul class="ranking-list">
+        <php>$vod_tj =ff_mysql_vod('cid:'.$list_id.';limit:10;day:30;order:vod_up desc');</php>
+          <fflist name="vod_tj" id="ppvod">
+          <li><span class="score">{$ppvod.vod_gold}</span><gt name="i" value="3"><em>{$i}.</em><else/><em class="stress">{$i}.</em></gt><a target="_blank" href="{$ppvod.vod_readurl}">{$ppvod.vod_name}[{$ppvod.list_name|msubstr=0,2}]</a></li>
+       </fflist>
+        </ul>
+        <!-- // ranking-list end -->
+      </div>
+      <!-- // ui-ranking end -->
+      <div class="ui-ranking">
+        <h3>{$list_name}排行榜</h3>
+        <ul class="ranking-list">
+         <php>$vod_zd =ff_mysql_vod('cid:'.$list_id.';day:30;limit:10;order:vod_hits desc');</php>
+          <fflist name="vod_zd" id="ppvod">
+          <li><span>{$ppvod.vod_hits}</span><gt name="i" value="3"><em>{$i}.</em><else/><em class="stress">{$i}.</em></gt><a target="_blank" href="{$ppvod.vod_readurl}">{$ppvod.vod_name}[{$ppvod.list_name|msubstr=0,2}]</a></li>
+       </fflist>
+        </ul>
+        <!-- // ranking-list end -->
+      </div> 

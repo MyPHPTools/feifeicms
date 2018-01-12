@@ -1,0 +1,8 @@
+<title>《{$vod_name}》<eq name="list_pid" value="2">{$vod_playername}{$vod_jiname}在线观看<else />-电影{$vod_name}</eq>-{$sitename}</title>
+<in name="list_pid" value="2,3">
+<meta name="keywords" content="{$vod_name}{:str_replace(array('第','集'),array('',''),$vod_jiname)},{$vod_name}{$vod_jiname},{$vod_name}{$vod_jiname}在线观看,{$vod_name}全集{:str_replace(array('第','集'),array('',''),$vod_jiname)},电视剧{$vod_name}{$vod_jiname}">
+<meta name="description" content="{$vod_name}高清在线观看 {$vod_name}电影 {$vod_name}下载 {$vod_name}演员表 {$vod_name}上映时间：{$vod_year} {$vod_name}剧情：{$vod_content|h|msubstr=0,100}">
+<else />
+<meta name="keywords" content="{$vod_name}下载,{$vod_name}在线观看,{$vod_name}高清下载,{$vod_name}qvod,{$vod_name}高清">
+<meta name="description" content="{$vod_name}高清在线观看 {$vod_name}电影 {$vod_name}下载 {$vod_name}演员表 {$vod_name}上映时间：{$vod_year} {$vod_name}剧情：{$vod_content|h|msubstr=0,100}">
+</in>

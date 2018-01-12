@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$sitename}-留言本</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$sitename}求片留言本，本站管理员将在第一时间回复与处理你的回复！">
+<!--ff.system.header -->
+<include file="Home:header" />
+<!--ff.留言本.表单验证 -->
+<include file="Home:guestbook_form" />
+</head>
+<body>
+<div class="wrap">
+    <include file="pp:header" />
+    <div class="vodlist_l box">
+        <div class="top"><h3><a href="{$root}">首页</a></label> > 求片留言</h3></div>
+        <div class="Gb">
+			<div class="form">
+            <form action="{$root}index.php?s=Gb-Insert" method="post" name="guestbook" id="guestbook">
+            <input name="gb_cid" type="hidden" value="{.id}" /><textarea name="gb_content" id="gb_content" class="gb_content" maxlength="200">{$gb_content|default='请留下您的宝贵意见，最多200个字。'}</textarea>
+            <input id="gb_button" class="gb_button" type="submit" value="发表留言"/>
+            <if condition="C('user_vcode') eq 1"><div class="vcode">验证码：<input name="gb_code" type="text" class="gb_vcode" id="gb_vcode"/> <span id="gb_vcode_html"></span></div></if>
+            <label id="gb_tips"></label>
+            </form>
+            </div>
+            <div class="list"><volist name="gb_list" id="ppvod">
+            <ul><li><empty name="ppvod.user_face"><img src="__PUBLIC__/images/face/face_1.jpg" /><else /><img src="{$ppvod.user_face}" /></empty>
+            <p><span class="time">{$ppvod.gb_addtime|date='Y-m-d H:i:s',###}</span>第{$ppvod.gb_floor}楼：{$ppvod.user_name}<br /><span class="content">{$ppvod.gb_content|htmlspecialchars|remove_xss}</span><notempty name="ppvod.gb_intro"><br /><span class="intro">站长回复：{$ppvod.gb_intro}</span></notempty></p>
+            </li>
+            </ul></volist></div>
+            <if condition="$gb_count gt C('user_gbnum')"><div class="pages">{$gb_pages}</div></if>
+        </div>
+    </div>
+    <div class="vodlist_r box">
+    	<div class="top">
+    		<h3><span>评分</span>影片排行榜</h3>
+        </div>
+        <ul id="bd200">{:getadsurl('200200')}</ul>
+        <ul><php>$gold_desc = ff_mysql_vod('limit:15;order:vod_gold desc,vod_hits desc');</php><volist name="gold_desc" id="ppvod"><li><span>{$ppvod.vod_gold}</span><em>{$i}</em><a href="{$ppvod.vod_readurl}">{$ppvod.vod_name|msubstr=0,12}</a></li></volist></ul>        
+    </div>     
+    <div class="blank"></div>
+    <include file="pp:footer" />
+</div>
+</body>
+</html>

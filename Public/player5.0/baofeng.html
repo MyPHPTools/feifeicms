@@ -1,0 +1,12 @@
+<body style="background-color:black;">
+<script type="text/javascript" src="http://u.daicuo.com/feifei/storm.js"></script>
+<script type="text/javascript">
+storm.onPlayerFinish = function() {
+	var next = parent.document.getElementById('topleft');
+	if (parent.parent.location.href != next.children[1].href)
+		parent.parent.location = next.children[1].href;
+}
+var html = storm.html(parent.Player.Url, parent.Player.Height, 666, parent.parent.location.href);
+document.write(html);
+</script>
+</body>
