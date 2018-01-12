@@ -1,8 +1,10 @@
-# ½« RewriteEngine Ä£Ê½´ò¿ª
+Options +FollowSymLinks
+IndexIgnore */*
+# å°† RewriteEngine æ¨¡å¼æ‰“å¼€
 RewriteEngine On
-# °²×°Ä¿Â¼Â·¾¶
+# å®‰è£…ç›®å½•è·¯å¾„
 RewriteBase /
-# Rewrite ÏµÍ³¹æÔòÇëÎğĞŞ¸Ä
+# Rewrite ç³»ç»Ÿè§„åˆ™è¯·å‹¿ä¿®æ”¹
 RewriteRule ^vod-(.*)$ index.php\?s=/Home-vod-$1
 RewriteRule ^news-(.*)$ index.php\?s=/Home-news-$1
 RewriteRule ^special-(.*)$ index.php\?s=/Home-special-$1
